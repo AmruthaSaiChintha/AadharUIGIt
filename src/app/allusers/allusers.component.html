@@ -1,0 +1,29 @@
+<app-logout></app-logout>
+  <div class="user-list">
+    <div class="user-heading">
+      <div class="heading-item">First Name</div>
+      <div class="heading-item">Last Name</div>
+      <div class="heading-item">Age</div>
+      <div class="heading-item">Address</div>
+      <div class="heading-item">Aadhar Number</div>
+      <div class="heading-item">Phone</div>
+      <div class="heading-item">Email</div>
+    </div>
+  
+    <div class="user-item" *ngFor="let user of getPaginatedUsers()">
+      <div>{{ user.firstName }}</div>
+      <div>{{ user.lastName }}</div>
+      <div>{{ user.age }}</div>
+      <div>{{ user.address }}</div>
+      <div>{{ user.aadharNumber }}</div>
+      <div>{{ user.phone }}</div>
+      <div>{{ user.email }}</div>
+    </div>
+  
+    <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= users.length">Next</button>
+    </div>
+  </div>
+  <app-footer></app-footer>

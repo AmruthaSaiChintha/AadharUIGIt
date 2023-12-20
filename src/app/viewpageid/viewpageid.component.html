@@ -1,0 +1,78 @@
+<app-options></app-options>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <!-- Include Bootstrap CSS, either by linking from CDN or by adding it to your project -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Image Section -->
+                <img *ngIf="details?.id && passportImageUrl" [src]="passportImageUrl" alt="User Image" class="img-fluid">
+                <img *ngIf="(details?.Id && passportImageUrl) as showImage" [src]="showImage ? passportImageUrl : 'assets\pdupe.png'" alt="User Image" class="img-fluid">
+                <button *ngIf="details?.Id && passportImageUrl" (click)="downloadImage()" class="btn btn-info download mt-3">Download Image</button>
+            </div>
+            <div class="col-md-6">
+                <!-- Details Section -->
+                <div class="user-card card">
+                    <div class="card-header user-header">
+                        <img src="assets\aadhar.png" alt="Aadhar Logo" class="user-logo">
+                        <h2>User Details</h2>
+                    </div>
+
+                    <div class="card-body user-details">
+                      
+                        <div class="detail">
+                            <span class="label">First Name:</span>
+                            <span class="value">{{details.firstName}}</span>
+                        </div>
+                        <div class="detail">
+                            <span class="label">Last Name:</span>
+                            <span class="value">{{details.lastName}}</span>
+                        </div>
+                        <div class="detail">
+                            <span class="label">Age:</span>
+                            <span class="value">{{details.age}}</span>
+                        </div>
+                        <div class="detail">
+                            <span class="label">Address:</span>
+                            <span class="value">{{details.address}}</span>
+                        </div>
+                        <div class="detail">
+                            <span class="label">Phone:</span>
+                            <span class="value">{{details.phone}}</span>
+                        </div>
+                        <div class="detail">
+                            <span class="label">Aadhar Number:</span>
+                            <span class="value">{{details.aadharNumber}}</span>
+                        </div>
+                        <div class="detail">
+                            <span class="label">Email:</span>
+                            <span class="value">{{details.email}}</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer button-container">
+                       
+                        <button class="btn btn-success">Verified</button>
+                        <button class="btn btn-primary" (click)="update(details.id)">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS, either by linking from CDN or by adding it to your project -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

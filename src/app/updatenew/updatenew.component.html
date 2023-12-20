@@ -1,0 +1,95 @@
+<app-logout></app-logout>
+  <!-- Section: Design Block -->
+  <section class="">
+    <!-- Jumbotron -->
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="ammu">
+              Digital Trust <br />
+              <br>
+              <span class="text-primary">Verify Now</span>
+          </h1>
+          <br>
+            <p style="color: hsl(217, 10%, 50.8%)">
+              Your identity is your most valuable possession; safeguard it with the trust of Aadhar verification
+            </p>
+          </div>
+  
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="card">
+              <div class="card-body py-5 px-md-5">
+                <form [formGroup]="form">
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="firstName">First name</label>
+                        <input type="text" id="firstName" class="form-control" formControlName="firstName" readonly/>
+                        
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="lastName">Last name</label>
+                        <input type="text" id="lastName" class="form-control" formControlName="lastName" readonly />
+            
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="age">Age</label>
+                          <input type="text" id="age" class="form-control" formControlName="age" readonly/>
+                      
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="address">address</label>
+                          <input type="text" id="address" class="form-control" formControlName="address" readonly/>
+                      
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="aadharNumber">aadharNumber</label>
+                          <input type="text" id="aadharNumber" class="form-control" formControlName="aadharNumber" readonly />
+                        
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="phone">Phone</label>
+                          <input type="text" id="phone" class="form-control" formControlName="phone" />
+                        
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="email">Email</label>
+                          <input type="text" id="email" class="form-control" formControlName="email" />
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-9">
+                        <div class="form-outline">
+                          
+                        <button (click)="submit(id, form.value)" class="btn btn-primary btn-block mb-4">
+                          update
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                 
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->
+  

@@ -1,0 +1,338 @@
+.user-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+body{
+  margin:0;
+}
+
+.user-logo {
+  width: 40px;
+  margin-right: 8px;
+}
+.container{
+  max-width: 1000px;
+}
+.detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1px;
+}
+.btn-verified {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+}
+
+.btn-update {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.card {
+  margin-bottom: 0;
+ }
+
+
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+
+.user-card {
+  width: 350px;
+  padding: 10px;
+  margin-top: 10px; 
+  margin-bottom: 1px;
+  display: flex;
+ 
+}
+
+.logo-text {
+  font-size: 18px;
+  display: flex;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  color: #23527c;
+  flex-grow: 1; 
+}
+
+.satyamev-logo {
+  align-items: initial;
+  display: flex;
+  width: 50px; 
+  margin-right: 10px; 
+}
+.satyamev-log {
+  align-items: initial;
+  display: flex;
+  width: 50px; 
+  margin-right: 10px; 
+}
+/* Add this CSS for styling the footer */
+.footer {
+background-color: #333; /* Set the background color */
+color: #fff; /* Set the text color */
+padding: 20px; /* Add some padding for spacing */
+text-align: center; /* Center-align the content */
+}
+
+/* Adjust the styles for links in the footer */
+.footer a {
+color: #fff; /* Set link color */
+text-decoration: none; /* Remove underlines from links */
+margin: 0 10px; /* Add spacing between links */
+}
+
+/* Style the links differently on hover */
+.footer a:hover {
+text-decoration: underline; /* Add underline on hover */
+}
+
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  height: 10vh; 
+  flex-direction: row;
+}
+.intro {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 520px;
+background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://i2.wp.com/allpicts.in/wp-content/uploads/2017/06/india_flag_fluttering_by_kids_for_Indian_Independence_day_Celebration.jpeg?w=2000");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.buttonclass {
+font-size: 30%; /* Adjust the font size relative to the parent element */
+padding: 3px 10px;
+width: 100px; /* Adjust the width */
+height: 35px; /* Adjust the height */
+border-radius: 2px;
+font-family:'Times New Roman', Times, serif;
+background-color: #ccc;
+}
+
+
+.intro p {
+font-size: 20px;
+color: #d1d1d1;
+text-transform: uppercase;
+margin: 20px 0;
+}
+
+.intro button {
+background-color: #5edaf0;
+color: #000;
+padding: 10px 25px;
+border: none;
+border-radius: 5px;
+font-size: 20px;
+font-weight: bold;
+cursor: pointer;
+box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+}
+
+
+.achievements {
+display: flex;
+justify-content: space-around;
+align-items: center;
+padding: 40px 80px;
+}
+
+.achievements .work {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0 40px;
+}
+
+.achievements .work i {
+width: fit-content;
+font-size: 50px;
+color: #333333;
+border-radius: 50%;
+border: 2px solid #333333;
+padding: 12px;
+}
+
+.achievements .work .work-heading {
+font-size: 20px;
+color: #333333;
+text-transform: uppercase;
+margin: 10px 0;
+}
+
+.achievements .work .work-text {
+font-size: 15px;
+color: #585858;
+margin: 10px 0;
+}
+
+.about-me {
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 40px 80px;
+border-top: 2px solid #eeeeee;
+}
+
+.about-me img {
+width: 500px;
+max-width: 100%;
+height: auto;
+border-radius: 10px;
+}
+
+.about-me-text h2 {
+font-size: 30px;
+color: #333333;
+text-transform: uppercase;
+margin: 0;
+}
+
+.about-me-text p {
+font-size: 15px;
+color: #585858;
+margin: 10px 0;
+}
+/* CSS for footer */
+.footer {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: #302f49;
+padding: 40px 80px;
+}
+
+.footer .copy {
+color: #fff;
+}
+
+.bottom-links {
+display: flex;
+justify-content: space-around;
+align-items: center;
+padding: 40px 0;
+}
+
+.bottom-links .links {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0 40px;
+}
+
+.bottom-links .links span {
+font-size: 20px;
+color: #fff;
+text-transform: uppercase;
+margin: 10px 0;
+}
+.center-text {
+  text-align: center;
+}
+.logo
+{
+  text-align: center;
+}
+.bottom-links .links a {
+text-decoration: none;
+color: #a1a1a1;
+padding: 10px 20px;
+}
+.dashboard-label {
+background: transparent;
+color: #fff;
+font-size: 1.2rem;
+font-weight: 500;
+margin-left: 8px;
+flex: 1 1;
+}  
+.buttonclass {
+font-size: 30%; /* Adjust the font size relative to the parent element */
+padding: 3px 10px;
+width: 100px; /* Adjust the width */
+height: 35px; /* Adjust the height */
+border-radius: 2px;
+font-family:'Times New Roman', Times, serif;
+background-color: #ccc;
+align-items: left;
+
+}
+
+.header__bar {
+height: 42px;
+background: linear-gradient(119.54deg,#000046,#1cb5e0);
+position: relative;
+width: 100%;
+margin-bottom: 5px;
+}
+.languages {
+margin: 0; /* Set margin to 0 */
+padding: 0; /* Set padding to 0 */
+}
+.languages-container {
+margin-bottom: 5px; /* Adjust the margin to your preference */
+}
+.nav-comp{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Optional: Adjust margin or padding for the router-outlet or its parent elements */
+router-outlet {
+margin-bottom: 5px; /* Adjust the margin to your preference */
+}
+
+
+.header__bar-content-wrapper {
+max-width: 1170px;
+display: flex;
+height: 100%;
+align-items: center;
+margin: 0 auto;
+padding: 0 16px;
+}
+.header__dashboard-label {
+background: transparent;
+color: #fff;
+font-size: 1.2rem;
+font-weight: 500;
+margin-left: 8px;
+flex: 1 1;
+}
+:after, :before {
+box-sizing: inherit;
+font-family: inherit;
+margin: 0;
+padding: 0;
+font-weight: inherit;
+font-style: inherit;
+}

@@ -1,0 +1,27 @@
+footer {
+    background: linear-gradient(119.54deg,#000046,#1cb5e0);
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+      }
+   
+      .footer-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+   
+      .footer-section {
+        flex: 1;
+        padding: 0 20px;
+      }
+   
+      .footer a {
+        color: #fff;
+        text-decoration: none;
+      }
+   
+      .footer a:hover {
+        text-decoration: underline;
+      }
+   

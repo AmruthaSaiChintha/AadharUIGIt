@@ -1,0 +1,37 @@
+body {
+  background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Open Sans", sans-serif;
+  color: #333333;
+  margin: 0;
+  box-sizing: border-box;
+  margin-bottom: 20px; /* Add margin to the bottom of the body */
+}
+body {
+  margin-bottom: 20px !important;
+}
+.container {
+  margin-top: 20px; /* Add margin to the top of the container */
+}
+
+.btn {
+  margin-bottom: 10px; /* Add margin to the bottom of the buttons */
+}
+.update{
+  margin-left: 10px;
+}
+.spin-animation {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

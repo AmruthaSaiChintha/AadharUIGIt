@@ -1,0 +1,213 @@
+<app-options></app-options>
+
+
+
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Exacting the Aadhaar Data...</span>
+  </div>
+  <p class="mt-2">Exacting the Aadhaar Data ...</p>
+</div>
+
+
+<!-- Your existing HTML code -->
+
+<!-- Section: Design Block -->
+<section class="hei">
+  <!-- Jumbotron -->
+  <div class="px-9 py-5 px-md-9 text-center text-lg-start form" style="background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-9 align-items-center">
+        
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h1 class="ammu">
+            Digital Trust <br />
+            <br>
+            <span class="text-primary">Verify Now</span>
+          </h1>
+          <br>
+          <p style="color: hsl(217, 10%, 50.8%)">
+            Your identity is your most valuable possession; safeguard it with the trust of Aadhar verification
+          </p>
+        </div>
+
+        <div class="col-lg-6 mb-6 mb-lg-0" >
+          <!-- <div class="card"> -->
+            <!-- <div class="card-body py-70 px-9"> -->
+              <form  [formGroup]="form" (ngSubmit)="onSubmit()" novalidate 
+                [class.show-validation-messages]="showValidationMessages">
+                <div *ngIf="form.invalid && form.touched" class="text-center error">
+                  Please fill in all the required fields.
+                </div>
+                <div *ngIf="isPassportNumberDuplicated" class="text-center error">
+                  Passport number already exists. Please use a check it once. Else use the existing user button.
+                </div>
+                <div *ngIf="showVerificationLoader" class="text-center">
+                  Verifying... Please wait.
+                </div>
+
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="col-lg-6 mb-3">
+                  <div class="image-container">
+                    <img [src]="passportImageUrl" class="user-image" style="width: 100%;">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 mb-3">
+                    <div class="form-outline">
+                      <input type="text" id="firstName" class="form-control" formControlName="firstName"
+                      placeholder="FirstName" required maxlength="20"
+                      pattern="[a-zA-Z ]*" 
+                      [ngClass]="{'is-invalid': form.get('firstName')?.invalid && form.get('firstName')?.touched}" />
+                  
+
+                      <!-- Bootstrap validation messages -->
+                      <div *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched"
+                        class="invalid-feedback">
+                        <small *ngIf="form.get('firstName')?.hasError('maxlength')">Maximum 20 characters
+                          allowed.</small>
+                        <small *ngIf="form.get('firstName')?.hasError('required')">FirstName is required.</small>
+                        <small *ngIf="form.get('firstName')?.hasError('pattern')">Only Characters are allowed</small>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="lastName" class="form-control" formControlName="lastName"
+                        placeholder="LastName" required maxlength="20"  pattern="[a-zA-Z ]*" 
+                        [ngClass]="{'is-invalid': form.get('lastName')?.invalid && form.get('lastName')?.touched}" />
+
+                      <!-- Bootstrap validation messages -->
+                      <div *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched"
+                        class="invalid-feedback">
+                        <small *ngIf="form.get('lastName')?.hasError('maxlength')">Maximum 20 characters
+                          allowed.</small>
+                        <small *ngIf="form.get('lastName')?.hasError('required')">LastName is required.</small>
+                        <small *ngIf="form.get('lastName')?.hasError('pattern')">Only Characters are allowed</small>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 mb-3">
+                    <div class="form-outline">
+
+                      <input type="text" id="age" class="form-control" formControlName="age" placeholder="Age" required  pattern="[0-9]*" 
+                        [ngClass]="{'is-invalid': form.get('age')?.invalid && form.get('age')?.touched}" />
+
+                      <!-- Bootstrap validation messages -->
+                      <div
+                        *ngIf="(form.get('age')?.hasError('min') || form.get('age')?.hasError('max')) && form.get('age')?.touched"
+                        class="invalid-feedback">
+                        <small>Age should be between 1 and 100.</small>
+                      </div>
+                      <div *ngIf="form.get('age')?.hasError('required') && form.get('age')?.touched"
+                        class="invalid-feedback">
+                        <small>Age is required.</small>
+                      </div>
+                      <small *ngIf="form.get('age')?.hasError('pattern')" class="invalid-feedback">Only Characters are allowed</small>
+
+
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+
+                      <input type="text" id="address" class="form-control" formControlName="address"
+                        placeholder="Address" required
+                        [ngClass]="{'is-invalid': form.get('address')?.invalid && form.get('address')?.touched}" />
+
+                      <!-- Bootstrap validation messages -->
+                      <div *ngIf="form.get('address')?.hasError('required') && form.get('address')?.touched"
+                        class="invalid-feedback">
+                        <small>Address is required.</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 mb-3">
+                    <div class="form-outline">
+
+                      <input type="text" id="phone" class="form-control" formControlName="phone" placeholder="Phone"
+                        required maxlength="10" pattern="9[0-9]*"
+                        [ngClass]="{'is-invalid': form.get('phone')?.invalid && form.get('phone')?.touched}" />
+
+                      <!-- Bootstrap validation messages -->
+                      <div *ngIf="form.get('phone')?.hasError('pattern') && form.get('phone')?.touched"
+                        class="invalid-feedback">
+                        <small>Please enter a valid phone number (10 digits).</small>
+                      </div>
+                      <div *ngIf="form.get('')?.hasError('required') && form.get('phone')?.touched"
+                        class="invalid-feedback">
+                        <small>Phone Number is required.</small>
+                      </div>
+                      <small *ngIf="form.get('phone')?.hasError('pattern')" class="invalid-feedback">Should strat with 9</small>
+
+
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-5">
+                    <div class="form-outline">
+
+                      <input type="text" id="aadharNumber" class="form-control" formControlName="aadharNumber"
+                        placeholder="Aadhar Number" required maxlength="12" pattern="[0-9]*"
+                        [ngClass]="{'is-invalid': form.get('aadharNumber')?.invalid && form.get('aadharNumber')?.touched}" />
+
+                      <!-- Bootstrap validation messages -->
+                      <div *ngIf="form.get('aadharNumber')?.hasError('required') && form.get('aadharNumber')?.touched"
+                        class="invalid-feedback">
+                        <small>Aadhar Number is required.</small>
+                      </div>
+                      <small *ngIf="form.get('aadharNumber')?.hasError('maxlength')">Maximum 12 numbers
+                        allowed.</small>
+                        <small *ngIf="form.get('aadharNumber')?.hasError('pattern')"   class="invalid-feedback">Allow only numbers</small>
+                    </div>
+                  </div>
+                </div>
+
+               
+                  <div class="form-outline">
+
+                    <input type="text" id="email" class="form-control" formControlName="email" placeholder="Email"  pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
+                      required [ngClass]="{'is-invalid': form.get('email')?.invalid && form.get('email')?.touched}" />
+
+                    <!-- Bootstrap validation messages -->
+                    <div *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched"
+                      class="invalid-feedback">
+                      <small>Email is required.</small>
+                    </div>
+                    <div *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched"
+                      class="invalid-feedback">
+                      <small>Please enter a valid email address.</small>
+                    </div>
+                    <small *ngIf="form.get('email')?.hasError('pattern')"   class="invalid-feedback">Email should be in format</small>
+
+
+                
+
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                  <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+                <div class="text-center">
+
+
+                  <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                  </button>
+                </div>
+              </form>
+            <!-- </div> -->
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+
+  <app-footer></app-footer>
+</section>
+<!-- Section: Design Block -->
