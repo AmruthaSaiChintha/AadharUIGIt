@@ -8,6 +8,10 @@
     color: #23527c;
     flex-grow: 1; 
 }
+.required {
+  color: red;
+  margin-left: 2px; /* Add some spacing between the asterisk and the text */
+}
 .satyamev-logo {
     align-items: initial;
     display: flex;
@@ -15,12 +19,7 @@
     margin-right: 10px; 
 }
 /* Add this CSS for styling the footer */
-.footer {
-  background-color: #333; /* Set the background color */
-  color: #fff; /* Set the text color */
-  padding: 20px; /* Add some padding for spacing */
-  text-align: center; /* Center-align the content */
-}
+
 
 /* Adjust the styles for links in the footer */
 .footer a {
@@ -48,35 +47,51 @@
     height: 10vh; 
     flex-direction: row;
   }
-.intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 10000px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://wallpaperaccess.com/full/133822.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
-.buttonclass {
-  font-size: 30%; /* Adjust the font size relative to the parent element */
-  padding: 3px 10px;
-  width: 100px; /* Adjust the width */
-  height: 35px; /* Adjust the height */
-  border-radius: 2px;
-  font-family:'Times New Roman', Times, serif;
-  background-color: #ccc;
-}
-.ammu{
-  font-size: xxx-large;
-font-family: Roboto, sans-serif;
-letter-spacing: normal;
-margin: 0 0 16px;
+  
 
-}
+
+  
+
+.card{
+  height: 200px;
+  }
+  .hei{
+    height: 30px;
+  
+  }
+  form{
+    height: 100px;
+  }
+  .hei{
+    height: 1000px;
+  
+  }
+  @media (min-width: 992px) {
+        .form {
+          display: flex;
+          flex-wrap: wrap;
+        }
+  
+        .col-lg-6 {
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
+      }
+  
+      /* Media Query for screens smaller than 768px */
+      @media (max-width: 768px) {
+        .form {
+          flex-direction: column;
+          height: 1000px;
+        }
+  
+        .col-lg-6 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+      }
+  
 .mat-h1, .mat-headline-5, .mat-typography .mat-h1, .mat-typography .mat-headline-5, .mat-typography h1 {
   font-size: xxx-large;
   font-weight: 400;
@@ -91,17 +106,8 @@ margin: 0 0 16px;
   margin: 20px 0;
 }
 
-.intro button {
-  background-color: #5edaf0;
-  color: #000;
-  padding: 10px 25px;
-  border: none;
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
-}
+
+
 
 
 .achievements {
@@ -168,14 +174,7 @@ margin: 0 0 16px;
   color: #585858;
   margin: 10px 0;
 }
-/* CSS for footer */
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #302f49;
-  padding: 40px 80px;
-}
+
 
 .footer .copy {
   color: #fff;
@@ -214,44 +213,26 @@ margin: 0 0 16px;
   color: #a1a1a1;
   padding: 10px 20px;
 }
-.dashboard-label {
-  background: transparent;
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-left: 8px;
-  flex: 1 1;
-}  
-.buttonclass {
-  font-size: 30%; /* Adjust the font size relative to the parent element */
-  padding: 3px 10px;
-  width: 100px; /* Adjust the width */
-  height: 35px; /* Adjust the height */
-  border-radius: 2px;
-  font-family:'Times New Roman', Times, serif;
-  background-color: #ccc;
-  align-items: left;
-  
-}
 
-.header__bar {
-  height: 42px;
-  background: linear-gradient(119.54deg,#000046,#1cb5e0);
-  position: relative;
-  width: 100%;
-  margin-bottom: 5px;
-}
+  
+
+
+
+
 .languages {
   margin: 0; /* Set margin to 0 */
   padding: 0; /* Set padding to 0 */
 }
 .languages-container {
-  margin-bottom: 5px; /* Adjust the margin to your preference */
+  margin-bottom: 3px; /* Adjust the margin to your preference */
 }
-.container
+
+.section
 {
-  height: 300px;
+  background-color: red;
 }
+
+
 .nav-comp{
     display: flex;
     justify-content: space-between;
@@ -271,14 +252,7 @@ router-outlet {
   margin: 0 auto;
   padding: 0 16px;
 }
-.header__dashboard-label {
-  background: transparent;
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-left: 8px;
-  flex: 1 1;
-}
+
 :after, :before {
   box-sizing: inherit;
   font-family: inherit;
@@ -288,5 +262,14 @@ router-outlet {
   font-style: inherit;
 }
 .card{
-  height: 220px;
+  height: 300px;
 }
+.ammu{
+  font-size: xxx-large;
+  font-family: Roboto, sans-serif;
+  letter-spacing: normal;
+  margin: 0 0 16px;
+  
+  }
+
+  

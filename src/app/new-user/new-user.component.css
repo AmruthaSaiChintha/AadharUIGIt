@@ -8,6 +8,11 @@
   color: #23527c;
   flex-grow: 1; 
 }
+.required
+{
+ color: red;
+ margin-left: 2px;
+}
 .satyamev-logo {
   align-items: initial;
   display: flex;
@@ -407,3 +412,27 @@ form.show-validation-messages {
   height: 30px;
 
 }
+@media (min-width: 992px) {
+      .form {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+
+    /* Media Query for screens smaller than 768px */
+    @media (max-width: 768px) {
+      .form {
+        flex-direction: column;
+        height: 1000px;
+      }
+
+      .col-lg-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }

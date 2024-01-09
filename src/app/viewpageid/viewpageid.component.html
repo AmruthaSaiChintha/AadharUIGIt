@@ -17,8 +17,9 @@
                 <!-- Image Section -->
                 <img *ngIf="details?.id && passportImageUrl" [src]="passportImageUrl" alt="User Image" class="img-fluid">
                 <img *ngIf="(details?.Id && passportImageUrl) as showImage" [src]="showImage ? passportImageUrl : 'assets\pdupe.png'" alt="User Image" class="img-fluid">
-                <button *ngIf="details?.Id && passportImageUrl" (click)="downloadImage()" class="btn btn-info download mt-3">Download Image</button>
-            </div>
+                <div class="buttoncss">
+                    <button class="btn btn-primary" *ngIf="passportImageUrl" (click)="downloadImage(passportImageUrl)">Download Image</button>
+                </div>            </div>
             <div class="col-md-6">
                 <!-- Details Section -->
                 <div class="user-card card">

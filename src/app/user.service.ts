@@ -17,15 +17,17 @@ export class UserService {
 
   constructor(public http:HttpClient, private jwt: JwtHelperService,
     private cookieService:CookieService) { }
-  apiUrl="https://localhost:44348/api/userdata";
+  apiUrl="http://localhost:8033/api/userdata";
 
-  baseUrl="https://localhost:44348/api/UserList/Login"
+  baseUrl="http://localhost:8033/api/UserList/Login"
 
-  private apiUrl1 = 'https://localhost:44348/api';
+  private apiUrl1 = 'http://localhost:8033/api';
 
-  userList='https://localhost:44348/api/GoogleDriveProxy'
+  userList='http://localhost:8033/api/GoogleDriveProxy'
 
-  finalUser='https://localhost:44348/api/FinalUsers'
+  finalUser='http://localhost:8033/api/FinalUsers';
+
+  email='http://localhost:8033/api/FinalUsers/SendMail'
 
   verify(userdata:any){
     return this.http.post(this.apiUrl+'/authenticat/',userdata);
@@ -38,6 +40,7 @@ export class UserService {
       })
     );
   }
+
   
   create(user:any): Observable<any> {
   
@@ -82,6 +85,9 @@ checkAadharExistence(passportNumber: string): Observable<boolean> {
   const url = `${this.apiUrl}/check-aadhar/${passportNumber}`;
   return this.http.get<boolean>(url);
 }
+sendEmail(user:any){
+  return this.http.post(this.email, user);
+}
   getUser1(id:number):Observable<any> {
     return this.http.get(this.apiUrl1+'/'+id);
   }
@@ -93,6 +99,7 @@ checkAadharExistence(passportNumber: string): Observable<boolean> {
     return this.http.get(this.apiUrl+'/by-email/'+useremail)
   }
   getuserbyaadhar(aadharNumber:string):any{
+
     return this.http.get(this.apiUrl+'/by-aadhar/'+aadharNumber)
   }
   getuserbyid(id:number){

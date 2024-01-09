@@ -25,10 +25,36 @@
   .button-container {
     display: flex;
     justify-content: space-between;
-  }
-  .container{
-      
-  }
+  }.buttoncss {
+    text-align: center;
+    margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+.verified-logo {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+
+.verified-logo i {
+  font-size: 24px; /* Adjust the font size as needed */
+  color: #28a745; /* Adjust the color as needed */
+}
+
   
   .btn-success {
     background-color: #28a745;

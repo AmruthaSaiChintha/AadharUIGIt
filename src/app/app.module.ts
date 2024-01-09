@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AadharpageComponent } from './aadharpage/aadharpage.component';
 import { SignupComponent } from './signup/signup.component';
 import { FooterComponent } from './footer/footer.component';
+
 import { LogoutComponent } from './logout/logout.component';
 import { HeaderComponent } from './header/header.component';
 import { UpdatenewComponent } from './updatenew/updatenew.component';
@@ -32,6 +33,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { OptionsComponent } from './options/options.component';
 import { Login1Component } from './login1/login1.component';
 import { Signup1Component } from './signup1/signup1.component';
+import { OtpComponent } from './otp/otp.component';
+import { ExistingUserComponent } from './existing-user/existing-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +61,9 @@ import { Signup1Component } from './signup1/signup1.component';
     HomepageComponent,
     OptionsComponent,
     Login1Component,
-    Signup1Component
+    Signup1Component,
+    OtpComponent,
+    ExistingUserComponent
   ],
   imports: [
     BrowserModule,

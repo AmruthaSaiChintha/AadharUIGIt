@@ -33,6 +33,7 @@ export class SignupComponent implements OnInit {
   signup() {
     console.log("SignupFormClicked");
     console.log(this.signupFormModel.value);
+    if(this.signupFormModel.valid){
 
  this.people.user(this.signupFormModel.value).subscribe((res)=> {
   console.log(res);
@@ -44,4 +45,10 @@ export class SignupComponent implements OnInit {
  })
       
     }
+    else {
+      // Mark all form controls as touched to display error messages
+      this.signupFormModel.markAllAsTouched();
+    }
   }
+  
+}

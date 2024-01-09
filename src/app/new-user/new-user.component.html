@@ -15,7 +15,8 @@
 <!-- Section: Design Block -->
 <section class="hei">
   <!-- Jumbotron -->
-  <div class="px-9 py-5 px-md-9 text-center text-lg-start form" style="background-color: hsl(0, 0%, 96%)">
+  
+  <div class="px-9 py-5 px-md-7 text-center text-lg-start form" style="background-color: hsl(0, 0%, 96%)">
     <div class="container">
       <div class="row gx-lg-9 align-items-center">
         
@@ -31,7 +32,7 @@
           </p>
         </div>
 
-        <div class="col-lg-6 mb-6 mb-lg-0" >
+        <div class="col-lg-6 mb-6 mb-lg-0" style="background-color: hsl(0, 0%, 96%)" >
           <!-- <div class="card"> -->
             <!-- <div class="card-body py-70 px-9"> -->
               <form  [formGroup]="form" (ngSubmit)="onSubmit()" novalidate 
@@ -55,8 +56,10 @@
                 <div class="row">
                   <div class="col-lg-6 mb-3">
                     <div class="form-outline">
+                      <label for="FirstName">First Name<span class="required">*</span></label>
                       <input type="text" id="firstName" class="form-control" formControlName="firstName"
-                      placeholder="FirstName" required maxlength="20"
+                   
+                      required maxlength="20"
                       pattern="[a-zA-Z ]*" 
                       [ngClass]="{'is-invalid': form.get('firstName')?.invalid && form.get('firstName')?.touched}" />
                   
@@ -74,8 +77,10 @@
                   </div>
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
+                      <label for="lastName">Last Name<span class="required">*</span></label>
                       <input type="text" id="lastName" class="form-control" formControlName="lastName"
-                        placeholder="LastName" required maxlength="20"  pattern="[a-zA-Z ]*" 
+                     
+                       required maxlength="20"  pattern="[a-zA-Z ]*" 
                         [ngClass]="{'is-invalid': form.get('lastName')?.invalid && form.get('lastName')?.touched}" />
 
                       <!-- Bootstrap validation messages -->
@@ -93,8 +98,9 @@
                 <div class="row">
                   <div class="col-lg-6 mb-3">
                     <div class="form-outline">
-
-                      <input type="text" id="age" class="form-control" formControlName="age" placeholder="Age" required  pattern="[0-9]*" 
+                      <label for="age">Age<span class="required">*</span></label>
+                      <input type="text" id="age" class="form-control" formControlName="age" 
+                       required  pattern="[0-9]*" 
                         [ngClass]="{'is-invalid': form.get('age')?.invalid && form.get('age')?.touched}" />
 
                       <!-- Bootstrap validation messages -->
@@ -114,9 +120,10 @@
                   </div>
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
-
+                      <label for="address">Address<span class="required">*</span></label>
                       <input type="text" id="address" class="form-control" formControlName="address"
-                        placeholder="Address" required
+                       
+                       required
                         [ngClass]="{'is-invalid': form.get('address')?.invalid && form.get('address')?.touched}" />
 
                       <!-- Bootstrap validation messages -->
@@ -130,8 +137,9 @@
                 <div class="row">
                   <div class="col-lg-6 mb-3">
                     <div class="form-outline">
-
-                      <input type="text" id="phone" class="form-control" formControlName="phone" placeholder="Phone"
+                      <label for="phone">Phone<span class="required">*</span></label>
+                      <input type="text" id="phone" class="form-control" formControlName="phone" 
+                      
                         required maxlength="10" pattern="9[0-9]*"
                         [ngClass]="{'is-invalid': form.get('phone')?.invalid && form.get('phone')?.touched}" />
 
@@ -140,7 +148,7 @@
                         class="invalid-feedback">
                         <small>Please enter a valid phone number (10 digits).</small>
                       </div>
-                      <div *ngIf="form.get('')?.hasError('required') && form.get('phone')?.touched"
+                      <div *ngIf="form.get('phone')?.hasError('required') && form.get('phone')?.touched"
                         class="invalid-feedback">
                         <small>Phone Number is required.</small>
                       </div>
@@ -151,9 +159,9 @@
                   </div>
                   <div class="col-md-6 mb-5">
                     <div class="form-outline">
-
+                      <label for="aadharNumber">Aadhar Number<span class="required">*</span></label>
                       <input type="text" id="aadharNumber" class="form-control" formControlName="aadharNumber"
-                        placeholder="Aadhar Number" required maxlength="12" pattern="[0-9]*"
+                        required maxlength="12" pattern="[0-9]*"
                         [ngClass]="{'is-invalid': form.get('aadharNumber')?.invalid && form.get('aadharNumber')?.touched}" />
 
                       <!-- Bootstrap validation messages -->
@@ -170,8 +178,8 @@
 
                
                   <div class="form-outline">
-
-                    <input type="text" id="email" class="form-control" formControlName="email" placeholder="Email"  pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
+                    <label for="email">Email<span class="required">*</span></label>
+                    <input type="text" id="email" class="form-control" formControlName="email"  pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
                       required [ngClass]="{'is-invalid': form.get('email')?.invalid && form.get('email')?.touched}" />
 
                     <!-- Bootstrap validation messages -->

@@ -24,8 +24,11 @@ import { UpdatenewComponent } from './updatenew/updatenew.component';
 import { OptionsComponent } from './options/options.component';
 import { Login1Component } from './login1/login1.component';
 import { Signup1Component } from './signup1/signup1.component';
+import { OtpComponent } from './otp/otp.component';
+
 
 const routes: Routes = [
+
 {path:"",component:LandingpageComponent},
 {path:"landingpage",component:LandingpageComponent},
 {path:"emailpage",component:EmailpageComponent},  
@@ -48,7 +51,8 @@ const routes: Routes = [
 {path:"updatenew/:id",component:UpdatenewComponent},
 {path:"options",component:OptionsComponent},
 {path:"login1",component:Login1Component},
-{path:"signup1",component:Signup1Component}
+{path:"signup1",component:Signup1Component},
+{path:"otp",component:OtpComponent}
 
 ];
 

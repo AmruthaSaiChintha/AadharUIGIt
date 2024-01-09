@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ViewpageidComponent {
   aadharNumber:any;
-  apiUrl='https://localhost:44348/api/GoogleDriveProxy';
+  apiUrl='http://localhost:8033/api/GoogleDriveProxy';
   passportImageUrl:string=''
   
     
@@ -82,12 +82,18 @@ export class ViewpageidComponent {
           }
         );
       }
-    downloadImage() {
-      const link = document.createElement('a');
-      link.href = this.passportImageUrl; // Use the image URL
-      link.download = 'user_image.jpg'; // Set the desired file name
-      link.click();
-    }
+      downloadImage(imageUrl: string) {
+ 
+        const a = document.createElement('a');
+   
+        a.href = imageUrl;
+        
+        a.download = 'user_image.jpg'; 
+        document.body.appendChild(a);
+        a.click();
+        
+        document.body.removeChild(a);
+      }
   
   }
   

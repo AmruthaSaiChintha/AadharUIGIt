@@ -1,76 +1,134 @@
-<!-- Add this style section in the head of your HTML document -->
 <app-options></app-options>
 <style>
-  /* Add your custom styles here */
-  .already {
-    display: block;
-    margin-top: 10px; /* Adjust the margin as needed */
-    color: hsl(217, 10%, 50.8%); /* Adjust the color as needed */
-  }
+    /* Default styles for large screens */
+    @media (min-width: 992px) {
+        .col-lg-6 {
+            width: 50%;
+        }
+
+        .mb-lg-0 {
+            margin-bottom: 0;
+        }
+    }
+
+    /* Responsive styles for medium-sized screens */
+    @media (max-width: 991px) {
+        .col-lg-6 {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .mb-5 {
+            margin-bottom: 5px;
+        }
+    }
+
+    /* Responsive styles for small screens */
+    @media (max-width: 576px) {
+        .col-lg-6 {
+            width: 100%;
+            margin-bottom: 10px; /* Adjusted the margin for the form element */
+        }
+
+        .mb-5 {
+            margin-bottom: 5px;
+        }
+
+        .card {
+            margin-bottom: 15px;
+        }
+
+        .px-md-5 {
+            padding-right: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .btn-block {
+            width: 100%;
+            /* margin-bottom: 20px; */
+        }
+    }
+
+    /* Additional styles for small devices (e.g., mobile phones) */
+    @media (max-width: 576px) {
+       
+
+
+     /*white space */
+        .for{
+            margin-top:20px
+        }
+      
+    }
 </style>
 
-<!-- ... Your existing HTML code ... -->
+<!-- Jumbotron -->
+<div class="color">
+<section class="section">
 
-<section class="">
-    <!-- Jumbotron -->
-    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+
+    <div class="px-4 py-5 px-md-9 text-center text-lg-start" style="background-color: hsl(0, 0%, 93%)">
         <div class="container">
             <div class="row gx-lg-5 align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <h1 class="ammu">
-                        Digital Trust <br />
-                        <br>
-                        <span class="text-primary">Verify Now</span>
+                      Digital Trust <br />
+                      <br>
+                      <span class="text-primary">Verify Now</span>
                     </h1>
                     <br>
-                    <p style="color: hsl(217, 10%, 50.8%)">
-                        Your identity is your most valuable possession; safeguard it with the trust of Aadhar verification
+                    <p style="color: hsl(216, 42%, 54%)">
+                      Your identity is your most valuable possession; safeguard it with the trust of Aadhar verification
                     </p>
-                </div>
+                  </div>
 
                 <div class="col-lg-6 mb-10 mb-lg-0">
-                    <div class="card">
-                        <div class="card-body py-5 px-md-5">
-                            <form [formGroup]="emailForm" (ngSubmit)="navigate()">
-                                <!-- Email input with validation messages -->
-                                <div class="form-outline mb-4">
-                                    <input type="AadharNumber" id="form3Example3" class="form-control"
-                                           placeholder="AadharNumber" formControlName="AadharNumber">
-                                    <div *ngIf="emailForm.get('AadharNumber')?.hasError('required') && emailForm.get('AadharNumber')?.touched"
-                                         class="text-danger">
-                                      AadharNumber is required
-                                    </div>
-                                    <div *ngIf="aadharNotExist" class="text-danger">
-                                      Aadhar number does not exist
-                                    </div>
-                                  </div>
-
-                                <!-- Submit button -->
-                                <button type="submit" class="btn btn-primary btn-block mb-4"
-                                    [disabled]="!emailForm.valid">
-                                    Sign up
-                                </button>
-                                <a routerLink="/newUser" class="already">If You don't  Registered? Register here.</a>
-
-                                <!-- Register buttons -->
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </button>
-                                    <!-- Add other social media buttons as needed -->
+                    <div class="card-body py-5 px-md-5">
+                        <div class="container">
+                            <div class="screen">
+                                <div class="screen__content">
+                                    <form class="login">
+                                        <div class="login__field">
+                                            <div *ngIf="errorMessage" class="alert alert-danger">
+                                                {{ errorMessage }}
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="Aadhdr" class="form-label">Aadhaar Number<span class="required">*</span></label>
+                                                <input type="text" class="form-control" #passportInput>
+                                            </div>
+                                            <button type="submit" (click)="otpclick()" *ngIf="button && showButton"
+                                                class="btn btn-primary btn-block mb-3">
+                                                Generate OTP
+                                            </button>
+                                            <div *ngIf="showInputField && !showError">
+                                                <div class="mb-3">
+                                                    <label for="otpInput" class="form-label">Enter OTP<span class="required">*</span></label>
+                                                    <input type="text" id="otpInput" class="form-control"
+                                                        formControlName="Passport Number" placeholder="Enter OTP" #otpInput />
+                                                </div>
+                                                <button type="submit" (click)="navigate()"
+                                                    class="btn btn-primary btn-block mb-4">
+                                                    Submit OTP
+                                                </button>
+                                            </div>
+                                          
+                                        </div>
+                                    </form>
                                 </div>
-
-                            </form>
+                                
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Jumbotron -->
 </section>
-
-<!-- ... Your existing HTML code ... -->
-
-<!-- Section: Design Block -->
+</div>
+<br>
 <app-footer></app-footer>
+
+
+
+

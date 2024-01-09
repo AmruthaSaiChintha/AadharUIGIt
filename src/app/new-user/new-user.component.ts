@@ -48,7 +48,7 @@ showValidationMessages: boolean = false;
   isPassportNumberDuplicated = false;
  
 
-  apiUrl = 'https://localhost:44348/api/GoogleDriveProxy'; // Update with your backend API URL
+  apiUrl = 'http://localhost:8033/api/GoogleDriveProxy'; // Update with your backend API URL
   vId!: number;
 
   constructor(

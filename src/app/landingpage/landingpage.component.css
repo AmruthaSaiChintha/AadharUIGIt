@@ -351,3 +351,50 @@ html {
   font-weight: inherit;
   font-style: inherit;
 }
+/* Default styles for larger screens */
+.intro {
+  text-align: center;
+  padding: 20px;
+}
+
+.achievements {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.work {
+  text-align: center;
+}
+
+.about-me {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.about-me-text {
+  flex: 1;
+}
+
+/* Media queries for smaller screens */
+@media screen and (max-width: 768px) {
+  .achievements {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-me {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+/* Additional styles for even smaller screens */
+@media screen and (max-width: 480px) {
+  .about-me-text {
+    order: 2;
+    text-align: center;
+  }
+}
