@@ -11,16 +11,19 @@
             class="card-img-top"
             width="300"
             height="250"
-            (load)="imageLoaded(singleUser.vId)"
+            (load)="imageLoaded(singleUser.d)"
             [hidden]="isImageLoadedMap[singleUser.vId]"
           /> -->
           <div class="card-body">
+            <!-- <p class="card-text text-center">Id: {{ singleUser.id}}</p> -->
             <h5 class="card-title text-center">{{ singleUser.firstName }} {{ singleUser.lastName }}</h5>
+            <p class="card-text text-center">Age: {{ singleUser.age}}</p>
             <p class="card-text text-center">Phone: {{ singleUser.phone}}</p>
             <p class="card-text text-center">Aadhar Number: {{ singleUser.aadharNumber}}</p>
+            <p class="card-text text-center">Email: {{ singleUser.email}}</p>
           </div>
           <div class="card-footer">
-            <button class="btn btn-danger" (click)="delete(singleUser.vId)">Delete</button>
+            <button class="btn btn-danger" (click)="delete(singleUser.id)">Delete</button>
             <button class="btn btn-primary update" (click)="update(singleUser.id)">Update</button>
           </div>
         </div>

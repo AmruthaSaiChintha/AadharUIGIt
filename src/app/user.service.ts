@@ -17,17 +17,19 @@ export class UserService {
 
   constructor(public http:HttpClient, private jwt: JwtHelperService,
     private cookieService:CookieService) { }
-  apiUrl="http://localhost:8033/api/userdata";
+  apiUrl="http://localhost:90/api/userdata";
 
-  baseUrl="http://localhost:8033/api/UserList/Login"
+  baseUrl="http://localhost:90/api/UserList/Login"
 
-  private apiUrl1 = 'http://localhost:8033/api';
+  private apiUrl1 = 'http://localhost:90/api';
 
-  userList='http://localhost:8033/api/GoogleDriveProxy'
+  userList='http://localhost:90/api/GoogleDriveProxy'
 
-  finalUser='http://localhost:8033/api/FinalUsers';
+  finalUser='http://localhost:90/api/FinalUsers';
 
-  email='http://localhost:8033/api/FinalUsers/SendMail'
+  
+
+  email='http://localhost:90/api/FinalUsers/SendMail'
 
   verify(userdata:any){
     return this.http.post(this.apiUrl+'/authenticat/',userdata);
@@ -85,6 +87,14 @@ checkAadharExistence(passportNumber: string): Observable<boolean> {
   const url = `${this.apiUrl}/check-aadhar/${passportNumber}`;
   return this.http.get<boolean>(url);
 }
+
+
+
+checkEmailExistence(email: string): Observable<boolean> {
+  const url = `${this.apiUrl}/check-aadhar/${email}`;
+  return this.http.get<boolean>(url);
+}
+
 sendEmail(user:any){
   return this.http.post(this.email, user);
 }
@@ -95,6 +105,7 @@ sendEmail(user:any){
   {
     return this.http.get(this.apiUrl+'/check-aadhar/'+aadharNumber)
   }
+
   getuserbyemail(useremail:string):any{
     return this.http.get(this.apiUrl+'/by-email/'+useremail)
   }
@@ -106,7 +117,7 @@ sendEmail(user:any){
     return this.http.get(this.apiUrl+'/'+id)
   }
   deleteUsser(id:number):any{
-    return this.http.get(this.userList+'/by-id/'+id)
+    return this.http.delete(this.apiUrl+'/'+id)
   }
   uploadImageAndDetails(data: FormData): Observable<any> {
     return this.http.post<any>(`${this.apiUrl1}/ImageProof`, data);

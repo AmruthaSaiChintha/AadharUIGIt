@@ -9,6 +9,12 @@
 
   
 }
+a.already:hover {
+  color: red; /* You can change the color as per your design */
+  font-weight: bold; /* You can adjust other styles as needed */
+  /* Add other styles to make it stand out on hover */
+}
+
 .required {
   color: red;
   margin-left: 2px; /* Add some spacing between the asterisk and the text */
@@ -44,7 +50,8 @@
 .container {
   margin-top: 10px;
 }
-
+.contain
+{}
 .register-photo .form-container {
   display: table;
   max-width: 900px;
@@ -52,6 +59,13 @@
   margin: 0 auto;
  
 }
+.body
+{
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #dedede;
+}
+
 
 .register-photo form {
   display: table-cell;

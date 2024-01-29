@@ -92,7 +92,7 @@
   padding: 3px 10px;
   width: 100px; /* Adjust the width */
   height: 35px; /* Adjust the height */
-  border-radius: 2px;
+
   font-family:'Times New Roman', Times, serif;
   background-color: #ccc;
 }
@@ -109,10 +109,9 @@
 
 
   
-  color: #000;
+ 
   padding: 10px 25px;
-  border: none;
-  border-radius: 5px;
+  
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
@@ -138,22 +137,22 @@
 .achievements .work i {
   width: fit-content;
   font-size: 50px;
-  color: #333333;
-  border-radius: 50%;
-  border: 2px solid #333333;
+ 
+
+ 
   padding: 12px;
 }
 
 .achievements .work .work-heading {
   font-size: 20px;
-  color: #333333;
+
   text-transform: uppercase;
   margin: 10px 0;
 }
 
 .achievements .work .work-text {
   font-size: 15px;
-  color: #585858;
+ 
   margin: 10px 0;
 }
 
@@ -162,26 +161,26 @@
   justify-content: center;
   align-items: center;
   padding: 40px 80px;
-  border-top: 2px solid #eeeeee;
+
 }
 
 .about-me img {
   width: 500px;
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
+ 
 }
 
 .about-me-text h2 {
   font-size: 30px;
-  color: #333333;
+
   text-transform: uppercase;
   margin: 0;
 }
 
 .about-me-text p {
   font-size: 15px;
-  color: #585858;
+
   margin: 10px 0;
 }
 /* CSS for footer */
@@ -243,7 +242,7 @@
   padding: 3px 10px;
   width: 100px; /* Adjust the width */
   height: 35px; /* Adjust the height */
-  border-radius: 2px;
+
   font-family:'Times New Roman', Times, serif;
   background-color: #ccc;
   align-items: left;
@@ -325,7 +324,7 @@ div {
   display: block;
 }
 body {
-  box-sizing: border-box;
+  
   font-family: "Roboto",sans-serif;
   font-weight: 400;
   font-style: normal;

@@ -12,8 +12,13 @@ body {
 body {
   margin-bottom: 20px !important;
 }
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
-  margin-top: 20px; /* Add margin to the top of the container */
+  margin-bottom: 90px; /* Adjust margin-bottom as needed */
 }
 
 .btn {
@@ -31,7 +36,4 @@ body {
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+

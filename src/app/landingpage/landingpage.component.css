@@ -275,6 +275,7 @@ router-outlet {
 }
 
 
+
 .header__bar-content-wrapper {
   max-width: 1170px;
   display: flex;

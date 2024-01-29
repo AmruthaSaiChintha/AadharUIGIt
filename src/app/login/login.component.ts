@@ -1,20 +1,54 @@
-// Import necessary modules
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { Subscription, timer } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+function passwordFormatValidator(control: AbstractControl): ValidationErrors | null {
+  const password = control.value;
+
+  const passwordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  if (!passwordFormat.test(password)) {
+    return { 'invalidPasswordFormat': true };
+  }
+
+  return null;
+}
+function emailFormatValidator(control: AbstractControl): ValidationErrors | null {
+  const email = control.value;
+
+  const emailFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!emailFormat.test(email)) {
+    return { 'invalidEmailFormat': true };
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy, OnInit {
   hide = true;
   loginForm: FormGroup;
   responseMsg: string = '';
   token: any = '';
+
+  showpassword: boolean = false;
+
+  maxAttempts = 3;
+  attempts = 0;
+  lockoutTime = 30; // in seconds
+  isLocked = false;
+  countdown: number | undefined;
+  private countdownSubscription: Subscription | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -23,16 +57,24 @@ export class LoginComponent {
     private cookieService: CookieService
   ) {
     this.loginForm = fb.group({
-      email: fb.control('', [Validators.required, Validators.email]),
+      email: fb.control('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),emailFormatValidator]),
       password: fb.control('', [
         Validators.required,
         Validators.minLength(8),
-        Validators.maxLength(15),
+        passwordFormatValidator
       ]),
     });
   }
+  ngOnInit(): void {
+ }
+
 
   login() {
+    if (this.isLocked) {
+      this.responseMsg = `Account is locked. Please try again in ${this.countdown} seconds.`;
+      return;
+    }
+
     let loginInfo = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value,
@@ -41,6 +83,7 @@ export class LoginComponent {
     this.api.login(loginInfo).subscribe(
       (Response) => {
         this.token = Response;
+        console.log(this.token);
 
         this.cookieService.set('Authorization', `Bearer ${Response.token}`, undefined, '/', undefined, true, 'Strict');
         localStorage.setItem("role", Response.role);
@@ -55,20 +98,30 @@ export class LoginComponent {
         } else {
           this.router.navigate(['/emailpage']);
         }
+
+        this.resetAttempts();
       },
       (error) => {
         console.error("not verified");
 
-        // Check if the error status is 401 (Unauthorized)
+        this.attempts++;
+
+        if (this.attempts >= this.maxAttempts) {
+          this.isLocked = true;
+          this.startCountdown();
+        }
+
         if (error.status === 401) {
-          // Handle incorrect password
           this.responseMsg = 'Invalid password. Please check your password and try again.';
         } else {
-          // Handle other errors
           this.responseMsg = 'An error occurred. Please try again later.';
         }
       }
     );
+  }
+
+  toggleShowPassword() {
+    this.showpassword = !this.showpassword;
   }
 
   getEmailErrors() {
@@ -81,15 +134,50 @@ export class LoginComponent {
     if (this.Password.hasError('required')) return 'Password is required!';
     if (this.Password.hasError('minlength'))
       return 'Minimum 8 characters are required!';
-    if (this.Password.hasError('maxlength'))
-      return 'Maximum 15 characters are required!';
+    if (this.Password.hasError('invalidPasswordFormat'))
+      return 'Password must have uppercase, lowercase, number, and special character';
     return '';
   }
 
   get Email(): FormControl {
     return this.loginForm.get('email') as FormControl;
   }
+
   get Password(): FormControl {
     return this.loginForm.get('password') as FormControl;
+  }
+
+  private startCountdown() {
+    this.countdown = this.lockoutTime;
+  
+    this.countdownSubscription = timer(1000, 1000)
+      .pipe(takeUntil(timer(this.lockoutTime * 1000 + 1000)))
+      .subscribe(
+        () => {
+          if (this.countdown) {
+            this.countdown--;
+            this.responseMsg = `Account is locked. Please try again in ${this.countdown} seconds.`;
+          }
+        },
+        () => {},
+        () => {
+          this.isLocked = false;
+          this.countdown = undefined;
+          this.countdownSubscription?.unsubscribe();
+          this.responseMsg=''
+        }
+      );
+  }
+  
+
+  private resetAttempts() {
+    this.attempts = 0;
+    this.isLocked = false;
+    this.countdown = undefined;
+    this.countdownSubscription?.unsubscribe();
+  }
+
+  ngOnDestroy() {
+    this.countdownSubscription?.unsubscribe();
   }
 }

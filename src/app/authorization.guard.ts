@@ -24,7 +24,7 @@ export class authorizationguard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.api.isLoggedIn()) {
+    
       if (this.api.getTokenUserInfo()?.userType === "admin") {
         return true;
       }
@@ -38,7 +38,7 @@ export class authorizationguard implements CanActivate {
         this.router.navigate(['login']);
       });
       return false;
-    }
-    return false;
+    
+
   }
 }

@@ -49,11 +49,16 @@ export class EmailpageComponent {
   }
  
   otpclick() {
-    this.showInputField = true;
-    this.showButton = false; // Hide the "Generate OTP" button
+    //this.showInputField = true;
+     this.showButton = false; // Hide the "Generate OTP" button
     this.otpButton = true;
     const passportNumber = this.passportInput.nativeElement.value;
-
+    if (passportNumber.length !== 12) {
+      this.showError = true;
+      this.errorMessage = 'Aadhaar Number must be exactly 12 digits.';
+      return;
+  }
+  
     this.userService.getuserbyaadhar(passportNumber).subscribe(
       (Response: any) => {
         this.errorMessage = ''
@@ -72,11 +77,12 @@ export class EmailpageComponent {
       (err: any) => {
         console.log(err);
         this.showError = true;
+       
         this.errorMessage = 'Invalid Aadhar Number. Please check and Try again!!';
 
         // Set showGeneratedButton to true only if there is an error
         this.otpButton = !!err;
-        this.showButton = true; // Show the "Generate OTP" button again
+       this.showButton = true; // Show the "Generate OTP" button again
       }
     );
   }
@@ -100,7 +106,7 @@ export class EmailpageComponent {
         },
         (err: any) => {
           console.error('Error fetching user details by passport number:', err);
-          this.errorMessage = 'The provided passport number could not be verified or may be empty. Please ensure the correctness of the number and proceed to view register details.';
+          this.errorMessage = 'The provided aadhaar number could not be verified or may be empty. Please ensure the correctness of the number and proceed to view register details.';
         }
       );
  

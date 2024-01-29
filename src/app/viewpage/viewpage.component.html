@@ -14,20 +14,22 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 d">
-                <img *ngIf="details?.id && passportImageUrl" [src]="passportImageUrl" alt="User Image" class="img-fluid">
-                <img *ngIf="details?.vId && passportImageUrl" [src]="passportImageUrl" alt="User Image" height="300px" width="300px">
+                <img *ngIf="details?.id && passportImageUrl" [src]="passportImageUrl" alt="User Image" height="400px" width="10000px" class="img-fluid">
+                <img *ngIf="details?.vId && passportImageUrl" [src]="passportImageUrl" alt="User Image" height="400px" width="10000px">
                 
         
                 <div class="buttoncss">
+                    
                     <button class="btn btn-primary" *ngIf="passportImageUrl" (click)="downloadImage(passportImageUrl)">Download Image</button>
+                    <button class="btn btn-primary"  *ngIf="passportImageUrl"(click)="update(details.id)">Update</button>
                 </div> 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <!-- Details Section -->
                 <div class="user-card card">
                     <div class="card-header user-header">
-                        <img src="assets\aadhar.png" alt="Aadhar Logo" class="user-logo">
-                        <h2>User Details</h2>
+                        <img src="https://thumbs.dreamstime.com/b/verified-stamp-seal-vector-illustration-rubber-simple-isolated-white-background-158487578.jpg" alt="Aadhar Logo" class="user-logo">
+                        <p>User Details<p>
                     </div>
 
                     <div class="card-body user-details">
@@ -60,15 +62,7 @@
                             <span class="label">Email:</span>
                             <span class="value">{{details.email}}</span>
                         </div>
-                       
-                        
-                    </div>
-
-                    <div class="card-footer button-container">
-                        <button class="btn btn-verified">Verified</button>
-                        
-                        <button class="btn btn-update" (click)="update(details.id)">Update</button>
-                    </div>
+                     </div>
                 </div>
             </div>
         </div>

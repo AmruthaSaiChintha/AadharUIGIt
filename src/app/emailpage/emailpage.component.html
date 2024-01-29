@@ -94,7 +94,8 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="Aadhdr" class="form-label">Aadhaar Number<span class="required">*</span></label>
-                                                <input type="text" class="form-control" #passportInput>
+                                                <input type="text" class="form-control" #passportInput
+                                                    maxlength="12" pattern="[0-9]{12}" required>
                                             </div>
                                             <button type="submit" (click)="otpclick()" *ngIf="button && showButton"
                                                 class="btn btn-primary btn-block mb-3">
@@ -126,9 +127,7 @@
     </div>
 </section>
 </div>
-<br>
 <app-footer></app-footer>
-
 
 
 

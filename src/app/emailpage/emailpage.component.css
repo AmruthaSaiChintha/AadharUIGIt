@@ -44,7 +44,7 @@
     display: flex;
     flex-direction: column;
     align-items: center; 
-    height: 10vh; 
+    /* height: 10vh;  */
     flex-direction: row;
   }
 
@@ -53,20 +53,6 @@
 
   
 
-.card{
-  height: 200px;
-  }
-  .hei{
-    height: 30px;
-  
-  }
-  form{
-    height: 100px;
-  }
-  .hei{
-    height: 1000px;
-  
-  }
   @media (min-width: 992px) {
         .form {
           display: flex;
@@ -83,7 +69,7 @@
       @media (max-width: 768px) {
         .form {
           flex-direction: column;
-          height: 1000px;
+         
         }
   
         .col-lg-6 {
@@ -224,7 +210,7 @@
   padding: 0; /* Set padding to 0 */
 }
 .languages-container {
-  margin-bottom: 3px; /* Adjust the margin to your preference */
+ 
 }
 
 .section
@@ -240,7 +226,7 @@
 
 /* Optional: Adjust margin or padding for the router-outlet or its parent elements */
 router-outlet {
-  margin-bottom: 5px; /* Adjust the margin to your preference */
+ 
 }
 
 
@@ -249,7 +235,7 @@ router-outlet {
   display: flex;
   height: 100%;
   align-items: center;
-  margin: 0 auto;
+
   padding: 0 16px;
 }
 

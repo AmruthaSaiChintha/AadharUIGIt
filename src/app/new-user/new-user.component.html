@@ -2,7 +2,7 @@
 
 
 
-<div *ngIf="loading" class="loading-overlay">
+<div *ngIf="!errorMessage && (loading || showVerificationLoader)" class="loading-overlay">
   <div class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Exacting the Aadhaar Data...</span>
   </div>
@@ -10,9 +10,8 @@
 </div>
 
 
-<!-- Your existing HTML code -->
 
-<!-- Section: Design Block -->
+
 <section class="hei">
   <!-- Jumbotron -->
   
@@ -31,15 +30,19 @@
             Your identity is your most valuable possession; safeguard it with the trust of Aadhar verification
           </p>
         </div>
+     
 
         <div class="col-lg-6 mb-6 mb-lg-0" style="background-color: hsl(0, 0%, 96%)" >
           <!-- <div class="card"> -->
             <!-- <div class="card-body py-70 px-9"> -->
+              <div *ngIf="errorMessage" class="errorMessage">
+                <p> {{errorMessage}}</p>
+              </div>
               <form  [formGroup]="form" (ngSubmit)="onSubmit()" novalidate 
                 [class.show-validation-messages]="showValidationMessages">
-                <div *ngIf="form.invalid && form.touched" class="text-center error">
+                <!-- <div *ngIf="form.invalid && form.touched" class="text-center error">
                   Please fill in all the required fields.
-                </div>
+                </div> -->
                 <div *ngIf="isPassportNumberDuplicated" class="text-center error">
                   Passport number already exists. Please use a check it once. Else use the existing user button.
                 </div>
@@ -58,11 +61,8 @@
                     <div class="form-outline">
                       <label for="FirstName">First Name<span class="required">*</span></label>
                       <input type="text" id="firstName" class="form-control" formControlName="firstName"
-                   
-                      required maxlength="20"
-                      pattern="[a-zA-Z ]*" 
+                      required maxlength="20" pattern="[a-zA-Z]+" 
                       [ngClass]="{'is-invalid': form.get('firstName')?.invalid && form.get('firstName')?.touched}" />
-                  
 
                       <!-- Bootstrap validation messages -->
                       <div *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched"
@@ -80,7 +80,7 @@
                       <label for="lastName">Last Name<span class="required">*</span></label>
                       <input type="text" id="lastName" class="form-control" formControlName="lastName"
                      
-                       required maxlength="20"  pattern="[a-zA-Z ]*" 
+                       required maxlength="20"  pattern="[a-zA-Z]+" 
                         [ngClass]="{'is-invalid': form.get('lastName')?.invalid && form.get('lastName')?.touched}" />
 
                       <!-- Bootstrap validation messages -->
@@ -113,7 +113,7 @@
                         class="invalid-feedback">
                         <small>Age is required.</small>
                       </div>
-                      <small *ngIf="form.get('age')?.hasError('pattern')" class="invalid-feedback">Only Characters are allowed</small>
+                      <small *ngIf="form.get('age')?.hasError('pattern')" class="invalid-feedback">Only Numbers are allowed</small>
 
 
                     </div>
@@ -121,18 +121,26 @@
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
                       <label for="address">Address<span class="required">*</span></label>
-                      <input type="text" id="address" class="form-control" formControlName="address"
-                       
-                       required
-                        [ngClass]="{'is-invalid': form.get('address')?.invalid && form.get('address')?.touched}" />
-
+                      <input
+                        type="text"
+                        id="address"
+                        class="form-control"
+                        formControlName="address"
+                        required
+                        pattern="^[a-zA-Z0-9\s,.'-]*$"
+                        [ngClass]="{'is-invalid': form.get('address')?.invalid && form.get('address')?.touched}"
+                      />
+                  
                       <!-- Bootstrap validation messages -->
-                      <div *ngIf="form.get('address')?.hasError('required') && form.get('address')?.touched"
-                        class="invalid-feedback">
+                      <div *ngIf="form.get('address')?.hasError('required') && form.get('address')?.touched" class="invalid-feedback">
                         <small>Address is required.</small>
+                      </div>
+                      <div *ngIf="form.get('address')?.hasError('pattern') && form.get('address')?.touched" class="invalid-feedback">
+                        <small>No special characters allowed</small>
                       </div>
                     </div>
                   </div>
+                  
                 </div>
                 <div class="row">
                   <div class="col-lg-6 mb-3">
@@ -140,7 +148,7 @@
                       <label for="phone">Phone<span class="required">*</span></label>
                       <input type="text" id="phone" class="form-control" formControlName="phone" 
                       
-                        required maxlength="10" pattern="9[0-9]*"
+                        required maxlength="10" pattern="9[0-9]*"  
                         [ngClass]="{'is-invalid': form.get('phone')?.invalid && form.get('phone')?.touched}" />
 
                       <!-- Bootstrap validation messages -->

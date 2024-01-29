@@ -1,90 +1,113 @@
 <app-header></app-header>
 <div class="container">
-  <!DOCTYPE html>
-  <html>
-  
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Untitled</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  </head>
-  
-  <body>
-      <div class="register-photo">
-          <div class="form-container">
-              <div class="image-holder">
-              
-              </div>
-              
-              <form  [formGroup]="signupFormModel">
-                  <h2 class="text-center">Create an account.</h2>
-                <div class="form-group">
-  <label for="username">Username<span class="required">*</span></label>
-  <input
-    type="text"
-    class="form-control"
-    id="username"
-    formControlName="username"
-   
- 
-    required
-    [ngClass]="{'is-invalid': signupFormModel.controls['username']?.invalid && signupFormModel.controls['username']?.touched}">
-  <div class="invalid-feedback">Username is required</div>
-</div>
+  <div class="register-photo">
+    <div class="form-container">
+      <div class="image-holder"></div>
 
-                  
-                  <div class="form-group">
-                    <label for="email">Email<span class="required">*</span></label>
-                    <input 
-                      type="text"
-                      class="form-control"
-                      id="email"
-                      formControlName="email"
-                  
-                      
-                     
-                      required
-                      [ngClass]="{'is-invalid': signupFormModel.controls['email']?.invalid && signupFormModel.controls['email']?.touched}">
-                    <div class="invalid-feedback">Email is required& Email should be in format</div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="password">Password<span class="required">*</span></label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="password"
-                      formControlName="password"
-                     
-                      
-                     
-                      required
-                      [ngClass]="{'is-invalid': signupFormModel.controls['password']?.invalid && signupFormModel.controls['password']?.touched}">
-                    <div class="invalid-feedback">Password is required</div>
-                  </div>
-                
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary mb-4" (click)="signup()">Sign up</button>
-                </div>
-                
-                  <a routerLink="/login" class="already">You already have an account? Login here.</a>
-              </form>
+      <form [formGroup]="signupFormModel" (ngSubmit)="signup()">
+        <h2 class="text-center">Create an account</h2>
+        <div class="form-group">
+          <label for="username">Username<span class="required">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            formControlName="username"
+            required
+            maxlength="20"
+            [ngClass]="{
+              'is-invalid':
+                signupFormModel.get('username')?.invalid &&
+                signupFormModel.get('username')?.touched
+            }"
+          />
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('username')?.hasError('required')">
+            Username is required
           </div>
-      </div>
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('username')?.hasError('minlength')">
+            Minimum 2 characters allowed
+          </div>
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('username')?.hasError('maxlength')">
+            Maximum 20 characters allowed
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email<span class="required">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            formControlName="email"
+            required
+            maxlength="30"
+            [ngClass]="{
+              'is-invalid':
+                signupFormModel.get('email')?.invalid &&
+                signupFormModel.get('email')?.touched
+            }"
+          />
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('email')?.hasError('required')">
+            Email is required
+          </div>
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('email')?.hasError('email')">
+            Invalid email format
+          </div>
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('email')?.hasError('maxlength')">
+            Email must be at most 30 characters long
+          </div>
+        </div>
+        
+        
+
+        <div class="form-group">
+          <label for="password">Password<span class="required">*</span></label>
+          <input
+            type="{{ showpassword ? 'text' : 'password' }}"
+            class="form-control"
+            id="password"
+            formControlName="password"
+            required
+            maxlength="20"
+            [ngClass]="{
+              'is-invalid':
+                signupFormModel.get('password')?.invalid &&
+                signupFormModel.get('password')?.touched
+            }"
+          />
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('password')?.hasError('maxlength')">
+            Maximum 20 characters allowed
+          </div>
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('password')?.hasError('pattern')">
+            Password must have at least one uppercase letter, one lowercase letter, one number, and one special character
+          </div>
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('password')?.hasError('required')">
+            Password is required
+          </div>
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('password')?.hasError('minlength')">
+            Minimum 6 characters required
+          </div>
+          <div class="invalid-feedback" *ngIf="signupFormModel.get('password')?.hasError('maxlength')">
+            Maximum 18 characters allowed
+          </div>
+        </div>
+        
+
+        <div class="box">
+          <input type="checkbox" [checked]="showpassword" (change)="toggleShowPassword()" />
+
+          <label>show password</label>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary mb-4">Sign up</button>
+        </div>
+
+        <a href="signup" routerLink="/login" class="user">You already have an account? Login here.</a>
+      </form>
+    </div>
+  </div>
+
   
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-  </body>
-  
-  </html>
 </div>
-  
 <app-footer></app-footer>
-<style>
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    box-shadow: none;
-  }
-</style>

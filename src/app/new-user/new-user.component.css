@@ -50,7 +50,7 @@ text-decoration: underline; /* Add underline on hover */
   display: flex;
   flex-direction: column;
   align-items: center; 
-  height: 10vh; 
+  /* height: 10vh;  */
   flex-direction: row;
 }
 .intro {
@@ -59,7 +59,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 width: 100%;
-height: 10000px;
+/* height: 10000px; */
 background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://wallpaperaccess.com/full/133822.jpg");
 background-size: cover;
 background-position: center;
@@ -70,7 +70,7 @@ background-repeat: no-repeat;
 font-size: 30%; /* Adjust the font size relative to the parent element */
 padding: 3px 10px;
 width: 100px; /* Adjust the width */
-height: 35px; /* Adjust the height */
+height: 35px;
 border-radius: 2px;
 font-family:'Times New Roman', Times, serif;
 background-color: #ccc;
@@ -81,6 +81,10 @@ font-family: Roboto, sans-serif;
 letter-spacing: normal;
 margin: 0 0 16px;
 
+}
+.errorMessage{
+  color: red;
+  text-align: center;
 }
 .mat-h1, .mat-headline-5, .mat-typography .mat-h1, .mat-typography .mat-headline-5, .mat-typography h1 {
 font-size: xxx-large;
@@ -253,11 +257,7 @@ padding: 0; /* Set padding to 0 */
 .languages-container {
 margin-bottom: 5px; /* Adjust the margin to your preference */
 }
-.container
-{
-height: 300px;
-}
-.nav-comp{
+nav-comp{
   display: flex;
   justify-content: space-between;
 }
@@ -292,9 +292,7 @@ padding: 0;
 font-weight: inherit;
 font-style: inherit;
 }
-.card{
-height: 400px;
-}
+
 .ammu{
   font-size: xxx-large;
 font-family: Roboto, sans-serif;
@@ -405,13 +403,7 @@ form.show-validation-messages {
 }
 
 
-.form{
-  height: 500px;
-}
-.hei{
-  height: 30px;
 
-}
 @media (min-width: 992px) {
       .form {
         display: flex;
@@ -428,7 +420,7 @@ form.show-validation-messages {
     @media (max-width: 768px) {
       .form {
         flex-direction: column;
-        height: 1000px;
+       
       }
 
       .col-lg-6 {

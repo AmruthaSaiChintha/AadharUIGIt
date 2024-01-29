@@ -25,6 +25,7 @@ import { OptionsComponent } from './options/options.component';
 import { Login1Component } from './login1/login1.component';
 import { Signup1Component } from './signup1/signup1.component';
 import { OtpComponent } from './otp/otp.component';
+import { AuthenticationGuard } from './authentication.guard';
 
 
 const routes: Routes = [
@@ -36,12 +37,12 @@ const routes: Routes = [
 {path:"details",component:DetailsComponent},
 {path:"update/:id", component:UpdateComponent},
 {path:"image",component:ImageComponent},
-{path:"users",component:UsersComponent},
+{path:"users",component:UsersComponent,canActivate:[authorizationguard]},
 {path:"createupdate",component:CreateupdateComponent},
 {path:"contactus",component:ContactusComponent},
 {path:"allusers",component:AllusersComponent,canActivate:[authorizationguard]},
 {path:"left",component:LeftComponent},
-{ path:"newUser", component:NewUserComponent},
+{ path:"newUser", component:NewUserComponent, canActivate:[AuthenticationGuard]},
 {path:"viewpageid/:id",component:ViewpageidComponent},
 {path:"login",component:LoginComponent},
 {path:"aadharpage",component:AadharpageComponent},

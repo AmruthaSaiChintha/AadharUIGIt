@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -13,15 +14,13 @@ import { UserService } from './user.service';
   providedIn: 'root',
 })
 export class AuthenticationGuard implements CanActivate {
-  constructor(private api: UserService) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    return this.api.isLoggedIn();
+  constructor(private api: UserService, private router:Router) {}
+  canActivate(): boolean {
+    if (this.api.isLoggedIn()) {
+      return true;
+    } else {
+      this.router.navigate(['/login']); // Redirect to login page if not authenticated
+      return false;
+    }
   }
 }

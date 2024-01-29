@@ -46,9 +46,10 @@ showValidationMessages: boolean = false;
   loading: boolean = false;
   showAlert = false;
   isPassportNumberDuplicated = false;
+  errorMessage:string=''
  
 
-  apiUrl = 'http://localhost:8033/api/GoogleDriveProxy'; // Update with your backend API URL
+  apiUrl = 'http://localhost:90/api/GoogleDriveProxy'; // Update with your backend API URL
   vId!: number;
 
   constructor(
@@ -63,7 +64,7 @@ showValidationMessages: boolean = false;
       firstName: ['', [Validators.required, Validators.maxLength(12)]],
       lastName: ['', [Validators.required, Validators.maxLength(12)]],
       age: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
-      address: ['', Validators.required],
+      address: ['', Validators.required,Validators.pattern("^[a-zA-Z0-9\s,.'-]*$")],
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       aadharNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -102,76 +103,77 @@ showValidationMessages: boolean = false;
 
   onSubmit() {
     this.form.markAllAsTouched();
-
+  
     // If the form is invalid, prevent further actions (e.g., form submission)
     this.showValidationMessages = this.form.invalid && this.form.touched;
-
+  
     if (this.form.invalid) {
+      this.errorMessage = "Please fill the form!!";
       return;
     }
-
+  
     this.verifyPassport();
   }
 
   verifyPassport() {
     console.log(this.form.value);
     const aadharNumber = this.form.get('aadharNumber')?.value;
-
+  
     if (!aadharNumber) {
-      console.error('aadharNumber  is empty or undefined');
+      console.error('aadharNumber is empty or undefined');
       return;
     }
     this.loading = true;
     console.log(aadharNumber);
-
-
   
-    
-      console.log("Image Related");
-
-        this.loading = true;
-        const fileNameWithExtension = aadharNumber + '.jpg';
-        console.log('Constructed URL:', `${this.apiUrl}?fileName=${fileNameWithExtension}`);
-console.log(fileNameWithExtension);
-        this.http.get(`${this.apiUrl}?fileName=${fileNameWithExtension}`, { responseType: 'blob' }).subscribe(
-          (response: any) => {
-            this.passportImageUrl = URL.createObjectURL(response);
-            console.log('Image URL:', this.passportImageUrl);
-            console.log('Image fetched');
-
-            this.convertImageToDataUrl(this.passportImageUrl)
-              .then((dataUrl) => {
-                Tesseract.recognize(dataUrl, 'eng', { logger: (info: any) => console.log(info) })
-                  .then((response) => {
-                    console.log('Tesseract Response:', response);
-
-                    const recognizedText = response.blocks?.[0]?.paragraphs?.[0]?.text || '';
-                    this.loading = false;
-                    console.log('Recognized Text:', recognizedText);
-
-                    if (this.isDataMatching(recognizedText)) {
-                      this.saveUserDataAndImage();
-                    } else {
-                      Swal.fire('Error', 'Verification Failed. Data does not match Please enter the correct details.', 'error');
-                    }
-                  })
-                  .catch((error) => {
-                    this.loading = false;
-                    console.error('Tesseract Error:', error);
-                  });
+    console.log('Image Related');
+  
+    this.loading = true;
+    const fileNameWithExtension = aadharNumber + '.jpg';
+    console.log('Constructed URL:', `${this.apiUrl}?fileName=${fileNameWithExtension}`);
+    console.log(fileNameWithExtension);
+    this.http.get(`${this.apiUrl}?fileName=${fileNameWithExtension}`, { responseType: 'blob' }).subscribe(
+      (response: any) => {
+        this.passportImageUrl = URL.createObjectURL(response);
+        console.log('Image URL:', this.passportImageUrl);
+        console.log('Image fetched');
+  
+        this.convertImageToDataUrl(this.passportImageUrl)
+          .then((dataUrl) => {
+            Tesseract.recognize(dataUrl, 'eng', { logger: (info: any) => console.log(info) })
+              .then((response) => {
+                console.log('Tesseract Response:', response);
+  
+                const recognizedText = response.blocks?.[0]?.paragraphs?.[0]?.text || '';
+                this.loading = false;
+                console.log('Recognized Text:', recognizedText);
+  
+                if (this.isDataMatching(recognizedText)) {
+                  this.saveUserDataAndImage();
+                  this.errorMessage = ''; // Reset error message on successful image fetch
+                } else {
+                  this.errorMessage = 'Verification Failed. Data does not match. Please enter the correct details.';
+                  Swal.fire('Error', this.errorMessage, 'error');
+                }
               })
               .catch((error) => {
-              
-                console.error('Error:', error);
+                this.loading = false;
+                console.error('Tesseract Error:', error);
               });
-          },
-          (error) => {
-            console.error('HTTP Error:', error);
-          },
-        );
-     
-  
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      },
+      (error) => {
+        console.error('HTTP Error:', error);
+        this.errorMessage = 'Entered Aadhar number is not valid!!';
+        console.log('Not found any image with that Aadhar number!!');
+        console.log('Error Message:', this.errorMessage);
+      }
+    );
   }
+  
   handleImageError() {
     console.error('Error loading image.');
   }
