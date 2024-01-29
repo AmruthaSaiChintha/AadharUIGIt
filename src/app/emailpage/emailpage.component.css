@@ -250,12 +250,12 @@ router-outlet {
 .card{
   height: 300px;
 }
-.ammu{
+.ammu {
   font-size: xxx-large;
-  font-family: Roboto, sans-serif;
-  letter-spacing: normal;
-  margin: 0 0 16px;
-  
-  }
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: auto; /* or you can set a specific value for letter spacing */
+  margin-bottom: 90px; /* Adjust the value as needed to create the desired gap */
+}
+
 
   

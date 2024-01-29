@@ -1,39 +1,28 @@
-body {
-  background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  font-family: "Open Sans", sans-serif;
-  color: #333333;
-  margin: 0;
-  box-sizing: border-box;
-  margin-bottom: 20px; /* Add margin to the bottom of the body */
-}
-body {
-  margin-bottom: 20px !important;
-}
-body, html {
-  margin: 0;
-  padding: 0;
+/* Add these styles for the table */
+.table-light th, .table-light td {
+  background-color: white;
 }
 
-.container {
-  margin-bottom: 90px; /* Adjust margin-bottom as needed */
+/* Style for buttons inside the table cells */
+.table-light button {
+  margin-right: 5px;
 }
 
-.btn {
-  margin-bottom: 10px; /* Add margin to the bottom of the buttons */
-}
-.update{
-  margin-left: 10px;
-}
-.spin-animation {
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #3498db;
+/* Add styles for the user images */
+.table-light img {
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
 }
 
+/* Center the content vertically in each table cell */
+.black-text {
+  color: black !important;
+}
+.footer {
+  margin-top: 130px; /* This will push the footer to the bottom */
+}
 
+body {
+  min-height: 100vh; /* Ensure that the body takes at least the full height of the viewport */
+  display: flex;
+  flex-direction: column;
+}

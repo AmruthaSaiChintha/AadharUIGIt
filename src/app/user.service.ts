@@ -17,19 +17,19 @@ export class UserService {
 
   constructor(public http:HttpClient, private jwt: JwtHelperService,
     private cookieService:CookieService) { }
-  apiUrl="http://localhost:90/api/userdata";
+  apiUrl="http://localhost:8033/api/userdata";
 
-  baseUrl="http://localhost:90/api/UserList/Login"
+  baseUrl="http://localhost:8033/api/UserList/Login"
 
-  private apiUrl1 = 'http://localhost:90/api';
+  private apiUrl1 = 'http://localhost:8033/api';
 
-  userList='http://localhost:90/api/GoogleDriveProxy'
+  userList='http://localhost:8033/api/GoogleDriveProxy'
 
-  finalUser='http://localhost:90/api/FinalUsers';
+  finalUser='http://localhost:8033/api/FinalUsers';
 
   
 
-  email='http://localhost:90/api/FinalUsers/SendMail'
+  email='http://localhost:8033/api/FinalUsers/SendMail'
 
   verify(userdata:any){
     return this.http.post(this.apiUrl+'/authenticat/',userdata);

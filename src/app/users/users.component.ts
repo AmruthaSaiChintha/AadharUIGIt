@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
   user: any[] = [];
   isImageLoadedMap: { [key: number]: boolean } = {};
   @ViewChild('imagePlaceholder', { static: false }) imagePlaceholder!:ElementRef;
-  apiUrl = 'http://localhost:90/api/GoogleDriveProxy';
+  apiUrl = 'http://localhost:8033/api/GoogleDriveProxy';
   passportImageUrl: string = '';
  
  

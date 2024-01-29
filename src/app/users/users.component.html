@@ -1,34 +1,39 @@
 <app-logout></app-logout>
 <div class="container">
   <h1 class="text-center">Verified Users</h1>
-  <div class="row">
-    <ng-container *ngFor="let chunk of getChunks(user, 3)">
-      <div class="col-md-4" *ngFor="let singleUser of chunk">
-        <div class="card mb-3">
-          <!-- <img
-            [src]="getPassportImageUrl(singleUser.passportNumber)"
-            alt="Passport Image"
-            class="card-img-top"
-            width="300"
-            height="250"
-            (load)="imageLoaded(singleUser.d)"
-            [hidden]="isImageLoadedMap[singleUser.vId]"
-          /> -->
-          <div class="card-body">
-            <!-- <p class="card-text text-center">Id: {{ singleUser.id}}</p> -->
-            <h5 class="card-title text-center">{{ singleUser.firstName }} {{ singleUser.lastName }}</h5>
-            <p class="card-text text-center">Age: {{ singleUser.age}}</p>
-            <p class="card-text text-center">Phone: {{ singleUser.phone}}</p>
-            <p class="card-text text-center">Aadhar Number: {{ singleUser.aadharNumber}}</p>
-            <p class="card-text text-center">Email: {{ singleUser.email}}</p>
-          </div>
-          <div class="card-footer">
-            <button class="btn btn-danger" (click)="delete(singleUser.id)">Delete</button>
-            <button class="btn btn-primary update" (click)="update(singleUser.id)">Update</button>
-          </div>
-        </div>
-      </div>
-    </ng-container>
+  <br>
+ 
+  <div class="table-responsive">
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Phone</th>
+          <th>Aadhar Number</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let chunk of getChunks(user, 3)">
+          <tr *ngFor="let singleUser of chunk">
+            <td class="black-text">{{ singleUser.firstName }} {{ singleUser.lastName }}</td>
+            <td class="black-text">{{ singleUser.age }}</td>
+            <td class="black-text">{{ singleUser.phone }}</td>
+            <td class="black-text">{{ singleUser.aadharNumber }}</td>
+            <td class="black-text">{{ singleUser.email }}</td>
+            <td class="black-text">
+              <button class="btn btn-danger" (click)="delete(singleUser.id)">Delete</button>
+              <button class="btn btn-primary update" (click)="update(singleUser.id)">Update</button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
   </div>
 </div>
-<app-footer></app-footer>
+<div class="footer">
+  <app-footer></app-footer>
+</div>
+
