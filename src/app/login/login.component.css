@@ -1,16 +1,6 @@
 .register-photo {
   padding: 30px 0;
 }
-
-.register-photo .image-holder {
-  display: table-cell;
-  width: auto;
-  background: url("https://openthemagazine.com/wp-content/uploads/2019/08/Aadhar-3.jpg") center/cover no-repeat;
-}
-.required {
-  color: red;
-  margin-left: 2px; /* Add some spacing between the asterisk and the text */
-}
 .register-photo form {
   display: table-cell;
   width: 400px;
@@ -20,26 +10,15 @@
   border-radius: 8px;
   margin: 0 auto; /* Center the form horizontally */
 }
+.register-photo .image-holder {
+  display: table-cell;
+  width: auto;
+  background: url("https://openthemagazine.com/wp-content/uploads/2019/08/Aadhar-3.jpg") center/cover no-repeat;
+}
 
 .register-photo form .form-group {
   margin-bottom: 20px; /* Adjusted margin for better spacing */
 }
-
-.register-photo form .btn-primary {
-
-  
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 8px;
- 
-  text-shadow: none;
-  outline: none !important;
-  cursor: pointer;
-  display: block; /* Make the button a block-level element */
-  margin: 0 auto; /* Center the button horizontally */
-}
-
 .container {
   margin-top: 10px;
 }
@@ -48,63 +27,11 @@
   display: table;
   max-width: 900px;
   width: 90%;
-  margin: 0 auto;
- 
-  
+  margin: 0 auto;  
 }
-
-.register-photo form {
-  display: table-cell;
-  width: 400px;
-  background-color: #ffffff;
-  padding: 40px 60px;
-  color: #505e6c;
-  border-radius: 8px; /* Added border-radius for a softer look */
-}
-
-@media (max-width: 991px) {
-  .register-photo form {
-      padding: 40px;
-  }
-}
-
-.register-photo form h2 {
-  font-size: 24px;
-  line-height: 1.5;
-  margin-bottom: 30px;
-}
-
-.register-photo form .form-check {
-  font-size: 13px;
-  line-height: 20px;
-}
-
-.register-photo form .btn-primary {
-
-  
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 8px; /* Adjusted padding for a more balanced look */
-  box-shadow: none;
-  margin-top: 10px;
-  align-items: center;
-  text-shadow: none;
-  outline: none !important;
-  cursor: pointer;
+.form-group
+{
+  position:relative;
 }
 
 
-
-
-
-
-
-.register-photo form .already {
-  display: block;
-  text-align: center;
-  font-size: 12px;
-  color: #6f7a85;
-  opacity: 0.9;
-  text-decoration: none;
-}

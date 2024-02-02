@@ -12,6 +12,7 @@ export class OptionsComponent {
   logout()
   {
     this.userservice.deleteToken();
+    localStorage.clear();
     this.router.navigate(['landingpage'])
 
   }

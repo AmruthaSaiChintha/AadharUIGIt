@@ -1,47 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-
-// Custom validator function to check if username contains numbers
-function noNumbersValidator(control: AbstractControl): ValidationErrors | null {
-  const username = control.value;
-  if (/\d/.test(username)) {
-    return { 'noNumbers': true };
-  }
-  return null;
-}
-
-function passwordFormatValidator(control: AbstractControl): ValidationErrors | null {
-  const password = control.value;
-
-  // Define your regular expression for the password format
-  const passwordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-  // Count the occurrences of special characters
-  const specialCharCount = (password.match(/[@$!%*?&]/g) || []).length;
-
-  // Return an error if there is not exactly one special character
-  if (specialCharCount !== 1) {
-    return { 'invalidPasswordFormat': true };
-  }
-
-  if (!passwordFormat.test(password)) {
-    return { 'invalidPasswordFormat': true };
-  }
-
-  return null;
-}
-
-
-// Custom validator function to check if email has .com ending
-function comEmailValidator(control: AbstractControl): ValidationErrors | null {
-  const email = control.value;
-  if (!/.com$/.test(email.toLowerCase())) {
-    return { 'invalidEmail': true };
-  }
-  return null;
-}
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -50,9 +10,7 @@ function comEmailValidator(control: AbstractControl): ValidationErrors | null {
 })
 export class SignupComponent implements OnInit {
   signupFormModel!: FormGroup;
-  // In your component.ts
-isHovered: boolean = false;
-
+  isHovered: boolean = false;
 
   constructor(private router: Router, public people: UserService, private fb: FormBuilder) { }
 
@@ -66,32 +24,36 @@ isHovered: boolean = false;
           Validators.required,
           Validators.email,
           Validators.maxLength(30),
-          this.validateEmailFormat
+          this.comEmailValidator
         ]
-      ],      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]],
+      ],
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20),
+          Validators.pattern(/^[^\d\s!@#$%^&*(),.?":{}|<>]+$/)
+        ]
+      ],
       password: [
         '',
         [
           Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(18),
-          Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/),
+          Validators.minLength(8),
+          Validators.maxLength(20),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/), // At least one uppercase, one lowercase, one digit, and one special character, with exactly one special character
         ],
       ],
       userType: ['user']
     });
   }
 
-  validateEmailFormat(control: AbstractControl): { [key: string]: boolean } | null {
+  comEmailValidator(control: any): { [key: string]: boolean } | null {
     const email = control.value;
-    const atIndex = email.indexOf('@');
-    const dotIndex = email.lastIndexOf('.');
-  
-    // Check for one "@" and one "." in the email
-    if (atIndex === -1 || dotIndex === -1 || atIndex !== email.lastIndexOf('@') || dotIndex !== email.lastIndexOf('.')) {
-      return { 'invalidEmailFormat': true };
+    if (!/.com$/.test(email.toLowerCase())) {
+      return { 'invalidEmail': true };
     }
-  
     return null;
   }
 

@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, Renderer2, ViewChild } from '@angular/co
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
  
 @Component({
   selector: 'app-users',
@@ -59,12 +61,31 @@ export class UsersComponent implements OnInit {
   }
   
   delete(id: number) {
-    this.userService.deleteUsser(id).subscribe((res:any) => {
-      alert('Do you really want to delete the user');
-      console.log('Deletedsucccssfully!!');
-      console.log(res);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really want to delete the user?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUsser(id).subscribe(
+          (res: any) => {
+            console.log('Deleted successfully!!');
+            console.log(res);
+            this.user = this.user.filter((user) => user.id !== id);
+          },
+          (error:any) => {
+            console.error('Error deleting user:', error);
+          }
+        );
+        Swal.fire('Deleted!', 'The user has been deleted.', 'success');
+      }
     });
   }
+  
  
   verifyPassport(aadharNumber: string, vId: number): void {
     if (!aadharNumber) {

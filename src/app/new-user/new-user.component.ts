@@ -51,6 +51,7 @@ showValidationMessages: boolean = false;
 
   apiUrl = 'http://localhost:8033/api/GoogleDriveProxy'; // Update with your backend API URL
   vId!: number;
+  adharnumber:any;
 
   constructor(
     private fb: FormBuilder,
@@ -63,17 +64,15 @@ showValidationMessages: boolean = false;
     this.form = this.fb.group({
       firstName: ['', [Validators.required, Validators.maxLength(12)]],
       lastName: ['', [Validators.required, Validators.maxLength(12)]],
-      age: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
-      address: ['', Validators.required,Validators.pattern("^[a-zA-Z0-9\s,.'-]*$")],
+      age: ['', [Validators.required, Validators.min(1), Validators.max(100),Validators.maxLength(3)]],
+      address: ['', Validators.required,Validators.maxLength(70)],
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      aadharNumber: ['', Validators.required],
+      aadharNumber: ['', Validators.required,Validators.maxLength(12),Validators.minLength(12)],
       email: ['', [Validators.required, Validators.email]],
     });
-
-    this.form.valueChanges.subscribe(() => {
+this.form.valueChanges.subscribe(() => {
       this.showAlert = false;
     });
-
     const script = document.createElement('script');
     script.src = 'https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js';
     script.onload = () => {
@@ -85,7 +84,6 @@ showValidationMessages: boolean = false;
   get f() {
     return this.form.controls;
   }
-
   isDataMatching(recognizedText: string): boolean {
     const formValues = this.form.value;
     const lowercasedResult = recognizedText.replace(/\s/g, '');
@@ -100,34 +98,26 @@ showValidationMessages: boolean = false;
       lowercasedResult.includes(formValues.email)
     );
   }
-
-  onSubmit() {
+onSubmit() {
     this.form.markAllAsTouched();
-  
-    // If the form is invalid, prevent further actions (e.g., form submission)
     this.showValidationMessages = this.form.invalid && this.form.touched;
-  
     if (this.form.invalid) {
       this.errorMessage = "Please fill the form!!";
       return;
     }
-  
-    this.verifyPassport();
+  this.verifyPassport();
   }
-
-  verifyPassport() {
+verifyPassport() {
     console.log(this.form.value);
     const aadharNumber = this.form.get('aadharNumber')?.value;
-  
+    this.adharnumber=aadharNumber
     if (!aadharNumber) {
       console.error('aadharNumber is empty or undefined');
       return;
     }
     this.loading = true;
     console.log(aadharNumber);
-  
     console.log('Image Related');
-  
     this.loading = true;
     const fileNameWithExtension = aadharNumber + '.jpg';
     console.log('Constructed URL:', `${this.apiUrl}?fileName=${fileNameWithExtension}`);
@@ -177,8 +167,6 @@ showValidationMessages: boolean = false;
   handleImageError() {
     console.error('Error loading image.');
   }
-  
-
   saveUserDataAndImage(): void {
     // Check again before proceeding to save user data and image
     if (this.isPassportNumberDuplicated) {
@@ -187,12 +175,13 @@ showValidationMessages: boolean = false;
       this.loading = false;
       return;
     }
-
-    this.user.create(this.form.value).subscribe(
+this.user.create(this.form.value).subscribe(
       (response) => {
-        const typedResponse = response as { id: number };
+        const typedResponse = response as { id: number};
         console.log('Verified user details added successfully');
+
         console.log(typedResponse.id);
+       
 
         Swal.fire({
           title: 'Verification Successful',
@@ -201,6 +190,9 @@ showValidationMessages: boolean = false;
           confirmButtonText: 'OK',
         }).then(() => {
           // Navigate to the next page after clicking OK
+          console.log(this.adharnumber);
+    localStorage.setItem('adharnumber',this.adharnumber)
+          
           this.router.navigate(['/viewpageid', typedResponse.id]);
           console.log(typedResponse.id)
           this.loading = false;

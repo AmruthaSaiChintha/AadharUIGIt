@@ -30,6 +30,7 @@ export class ViewpageidComponent {
       ngOnInit(): void {
         this.route.params.subscribe(params => {
           this.aadharNumber = params['id']; 
+
         });
       
         this.userdetails.getuserbyid(this.aadharNumber).subscribe(
@@ -37,6 +38,7 @@ export class ViewpageidComponent {
             console.log("success");
             this.details = response; // Store the response in the 'details' variable
             console.log(this.details);
+            this.details.aadharNumber=localStorage.getItem('adharnumber')
             this.verifyPassport(this.details.aadharNumber)
           },
           (error: any) => {

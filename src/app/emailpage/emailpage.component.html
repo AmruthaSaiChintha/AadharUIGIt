@@ -1,133 +1,65 @@
 <app-options></app-options>
-<style>
-    /* Default styles for large screens */
-    @media (min-width: 992px) {
-        .col-lg-6 {
-            width: 50%;
-        }
-
-        .mb-lg-0 {
-            margin-bottom: 0;
-        }
-    }
-
-    /* Responsive styles for medium-sized screens */
-    @media (max-width: 991px) {
-        .col-lg-6 {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .mb-5 {
-            margin-bottom: 5px;
-        }
-    }
-
-    /* Responsive styles for small screens */
-    @media (max-width: 576px) {
-        .col-lg-6 {
-            width: 100%;
-            margin-bottom: 10px; /* Adjusted the margin for the form element */
-        }
-
-        .mb-5 {
-            margin-bottom: 5px;
-        }
-
-        .card {
-            margin-bottom: 15px;
-        }
-
-        .px-md-5 {
-            padding-right: 1.5rem;
-            padding-left: 1.5rem;
-        }
-
-        .btn-block {
-            width: 100%;
-            /* margin-bottom: 20px; */
-        }
-    }
-
-    /* Additional styles for small devices (e.g., mobile phones) */
-    @media (max-width: 576px) {
-       
-
-
-     /*white space */
-        .for{
-            margin-top:20px
-        }
-      
-    }
-</style>
-
-<!-- Jumbotron -->
 <div class="color">
-<section class="section">
-
-
-    <div class="px-4 py-5 px-md-9 text-center text-lg-start" style="background-color: hsl(0, 0%, 93%)">
-        <div class="container">
-            <div class="row gx-lg-5 align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <h1 class="ammu">
-                      Digital Trust <br/>
-                      <br>
-                      <span class="text-primary">Verify Now</span>
-                    </h1>
-                    <br>
-                    <p style="color: hsl(216, 42%, 54%)">
-                      Your identity is your most valuable possession; safeguard it with the trust of Aadhar verification
-                    </p>
-                  </div>
-
-                <div class="col-lg-6 mb-10 mb-lg-0">
-                    <div class="card-body py-5 px-md-5">
-                        <div class="container">
-                            <div class="screen">
-                                <div class="screen__content">
-                                    <form class="login">
-                                        <div class="login__field">
-                                            <div *ngIf="errorMessage" class="alert alert-danger">
-                                                {{ errorMessage }}
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="Aadhdr" class="form-label">Aadhaar Number<span class="required">*</span></label>
-                                                <input type="text" class="form-control" #passportInput
-                                                    maxlength="12" pattern="[0-9]{12}" required>
-                                            </div>
-                                            <button type="submit" (click)="otpclick()" *ngIf="button && showButton"
-                                                class="btn btn-primary btn-block mb-3">
-                                                Generate OTP
-                                            </button>
-                                            <div *ngIf="showInputField && !showError">
-                                                <div class="mb-3">
-                                                    <label for="otpInput" class="form-label">Enter OTP<span class="required">*</span></label>
-                                                    <input type="text" id="otpInput" class="form-control"
-                                                        formControlName="Passport Number" placeholder="Enter OTP" #otpInput />
+    <section class="section">
+        <div class="px-4 py-5 px-md-9 text-center text-lg-start" style="background-color: hsl(0, 0%, 93%)">
+            <div class="container">
+                <div class="row gx-lg-5 align-items-center">
+                    <div class="col-lg-5 mb-5 mb-lg-0">
+                        <h1 class="ammu">
+                            Digital Trust <br />
+                            <br>
+                            <span class="text-primary">Verify Now</span>
+                        </h1>
+                        <p style="color: hsl(216, 42%, 54%)">
+                            Your identity is your most valuable possession,
+                            safeguard it with the trust of Aadhar verification
+                        </p>
+                    </div>
+                    <div class="col-lg-6 mb-10 mb-lg-0">
+                        <div class="card-body py-5 px-md-5">
+                            <div class="container">
+                                <div class="screen">
+                                    <div class="screen__content">
+                                        <form class="login">
+                                            <div class="login__field">
+                                                <div *ngIf="errorMessage" class="alert alert-danger">
+                                                    {{ errorMessage }}
                                                 </div>
-                                                <button type="submit" (click)="navigate()"
-                                                    class="btn btn-primary btn-block mb-4">
-                                                    Submit OTP
+                                                <div class="mb-3">
+                                                    <label for="Aadhdr" class="form-label">Aadhaar Number<span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control" #passportInput
+                                                        maxlength="12" pattern="[0-9]{12}" required>
+                                                </div>
+                                                <button type="submit" (click)="otpclick()" *ngIf="button && showButton"
+                                                    class="btn btn-primary btn-block mb-3">
+                                                    Generate OTP
                                                 </button>
+                                                <div *ngIf="showInputField && !showError">
+                                                    <div class="mb-3">
+                                                        <label for="otpInput" class="form-label">Enter OTP<span
+                                                                class="required">*</span></label>
+                                                        <input type="text" id="otpInput" class="form-control"
+                                                            maxlength="6" pattern="[0-9]{6}"
+                                                            formControlName="Passport Number" placeholder="Enter OTP"
+                                                            #otpInput />
+                                                    </div>
+                                                    <button type="submit" (click)="navigate()"
+                                                        class="btn btn-primary btn-block mb-4">
+                                                        Submit OTP
+                                                    </button>
+                                                </div>
+
                                             </div>
-                                          
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
-                                
-                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </div>
 <app-footer></app-footer>
-
-
-

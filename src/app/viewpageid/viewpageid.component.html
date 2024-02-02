@@ -1,5 +1,4 @@
 <app-options></app-options>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,23 +14,30 @@
         <div class="row">
             <div class="col-md-6">
                 <!-- Image Section -->
-                <img *ngIf="details?.id && passportImageUrl" [src]="passportImageUrl" alt="User Image" class="img-fluid">
-                <img *ngIf="(details?.Id && passportImageUrl) as showImage" [src]="showImage ? passportImageUrl : 'assets\pdupe.png'" alt="User Image" class="img-fluid">
+                <img *ngIf="details?.id && passportImageUrl" [src]="passportImageUrl" alt="User Image"
+                    class="img-fluid">
+                <img *ngIf="(details?.Id && passportImageUrl) as showImage"
+                    [src]="showImage ? passportImageUrl : 'assets\pdupe.png'" alt="User Image" class="img-fluid">
                 <div class="buttoncss">
-                    <button class="btn btn-primary" *ngIf="passportImageUrl" (click)="downloadImage(passportImageUrl)">Download Image</button>
-                    <button class="btn btn-primary"  *ngIf="passportImageUrl"(click)="update(details.id)">Update</button>
+                    <button class="btn btn-primary" *ngIf="passportImageUrl"
+                        (click)="downloadImage(passportImageUrl)">Download Image</button>
+                    <button class="btn btn-primary" *ngIf="passportImageUrl"
+                        (click)="update(details.id)">Update</button>
 
-                </div>            </div>
+                </div>
+            </div>
             <div class="col-md-6">
                 <!-- Details Section -->
                 <div class="user-card card">
                     <div class="card-header user-header">
-                        <img src="https://thumbs.dreamstime.com/b/verified-stamp-seal-vector-illustration-rubber-simple-isolated-white-background-158487578.jpg" alt="Aadhar Logo" class="user-logo">
-                        <p>User Details<p>
+                        <img src="https://thumbs.dreamstime.com/b/verified-stamp-seal-vector-illustration-rubber-simple-isolated-white-background-158487578.jpg"
+                            alt="Aadhar Logo" class="user-logo">
+                        <p>User Details
+                        <p>
                     </div>
 
                     <div class="card-body user-details">
-                      
+
                         <div class="detail">
                             <span class="label">First Name:</span>
                             <span class="value">{{details.firstName}}</span>
@@ -62,7 +68,7 @@
                         </div>
                     </div>
 
-                  
+
                 </div>
             </div>
         </div>

@@ -9,24 +9,20 @@ import { takeUntil } from 'rxjs/operators';
 
 function passwordFormatValidator(control: AbstractControl): ValidationErrors | null {
   const password = control.value;
-
   const passwordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
   if (!passwordFormat.test(password)) {
     return { 'invalidPasswordFormat': true };
   }
-
   return null;
 }
 function emailFormatValidator(control: AbstractControl): ValidationErrors | null {
   const email = control.value;
 
+  // Updated regular expression to include a dot (`.`)
   const emailFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
   if (!emailFormat.test(email)) {
     return { 'invalidEmailFormat': true };
   }
-
   return null;
 }
 
@@ -40,9 +36,7 @@ export class LoginComponent implements OnDestroy, OnInit {
   loginForm: FormGroup;
   responseMsg: string = '';
   token: any = '';
-
   showpassword: boolean = false;
-
   maxAttempts = 3;
   attempts = 0;
   lockoutTime = 30; // in seconds
@@ -57,7 +51,7 @@ export class LoginComponent implements OnDestroy, OnInit {
     private cookieService: CookieService
   ) {
     this.loginForm = fb.group({
-      email: fb.control('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),emailFormatValidator]),
+      email: fb.control('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/), emailFormatValidator]),
       password: fb.control('', [
         Validators.required,
         Validators.minLength(8),
@@ -66,51 +60,39 @@ export class LoginComponent implements OnDestroy, OnInit {
     });
   }
   ngOnInit(): void {
- }
-
-
+  }
   login() {
     if (this.isLocked) {
       this.responseMsg = `Account is locked. Please try again in ${this.countdown} seconds.`;
       return;
     }
-
-    let loginInfo = {
+  let loginInfo = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value,
     };
-
-    this.api.login(loginInfo).subscribe(
+  this.api.login(loginInfo).subscribe(
       (Response) => {
         this.token = Response;
         console.log(this.token);
-
         this.cookieService.set('Authorization', `Bearer ${Response.token}`, undefined, '/', undefined, true, 'Strict');
         localStorage.setItem("role", Response.role);
-
         this.responseMsg = '';
-
         const user = this.api.getTokenUserInfo();
         console.log('User Type:', user?.userType);
-
         if (user && user.userType === 'admin') {
           this.router.navigate(['/users']);
         } else {
           this.router.navigate(['/emailpage']);
         }
-
-        this.resetAttempts();
+    this.resetAttempts();
       },
       (error) => {
         console.error("not verified");
-
         this.attempts++;
-
         if (this.attempts >= this.maxAttempts) {
           this.isLocked = true;
           this.startCountdown();
         }
-
         if (error.status === 401) {
           this.responseMsg = 'Invalid password. Please check your password and try again.';
         } else {
@@ -119,18 +101,15 @@ export class LoginComponent implements OnDestroy, OnInit {
       }
     );
   }
-
-  toggleShowPassword() {
+ toggleShowPassword() {
     this.showpassword = !this.showpassword;
   }
-
-  getEmailErrors() {
+getEmailErrors() {
     if (this.Email.hasError('required')) return 'Email is required!';
     if (this.Email.hasError('email')) return 'Email is invalid.';
     return '';
   }
-
-  getPasswordErrors() {
+getPasswordErrors() {
     if (this.Password.hasError('required')) return 'Password is required!';
     if (this.Password.hasError('minlength'))
       return 'Minimum 8 characters are required!';
@@ -138,8 +117,7 @@ export class LoginComponent implements OnDestroy, OnInit {
       return 'Password must have uppercase, lowercase, number, and special character';
     return '';
   }
-
-  get Email(): FormControl {
+get Email(): FormControl {
     return this.loginForm.get('email') as FormControl;
   }
 
@@ -149,8 +127,7 @@ export class LoginComponent implements OnDestroy, OnInit {
 
   private startCountdown() {
     this.countdown = this.lockoutTime;
-  
-    this.countdownSubscription = timer(1000, 1000)
+  this.countdownSubscription = timer(1000, 1000)
       .pipe(takeUntil(timer(this.lockoutTime * 1000 + 1000)))
       .subscribe(
         () => {
@@ -159,16 +136,16 @@ export class LoginComponent implements OnDestroy, OnInit {
             this.responseMsg = `Account is locked. Please try again in ${this.countdown} seconds.`;
           }
         },
-        () => {},
+        () => { },
         () => {
           this.isLocked = false;
           this.countdown = undefined;
           this.countdownSubscription?.unsubscribe();
-          this.responseMsg=''
+          this.responseMsg = ''
         }
       );
   }
-  
+
 
   private resetAttempts() {
     this.attempts = 0;

@@ -32,6 +32,11 @@
   font-size: medium;
   font-weight: 1000;
 }
+.color
+{
+  color: white;
+  font-weight:500;
+}
 .usericon{
   size: 200px;
 }
