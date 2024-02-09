@@ -4,13 +4,11 @@
 .register-photo .image-holder {
   display: table-cell;
   width: auto;
-  background: url("https://www.visualsstock.com/images/Low/4/AK56244.jpg") center/cover no-repeat;
-  
+  background: url("https://www.visualsstock.com/images/Low/4/AK56244.jpg") center/cover no-repeat;  
 }
 .container {
   margin-top: 10px;
 }
-
 .register-photo .form-container {
   display: table;
   max-width: 900px;
