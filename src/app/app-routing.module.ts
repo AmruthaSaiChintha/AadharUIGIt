@@ -22,8 +22,7 @@ import { HeaderComponent } from './header/header.component';
 import { authorizationguard } from './authorization.guard';
 import { UpdatenewComponent } from './updatenew/updatenew.component';
 import { OptionsComponent } from './options/options.component';
-import { Login1Component } from './login1/login1.component';
-import { Signup1Component } from './signup1/signup1.component';
+
 import { OtpComponent } from './otp/otp.component';
 import { AuthenticationGuard } from './authentication.guard';
 
@@ -51,8 +50,8 @@ const routes: Routes = [
 {path:"header",component:HeaderComponent},
 {path:"updatenew/:id",component:UpdatenewComponent},
 {path:"options",component:OptionsComponent},
-{path:"login1",component:Login1Component},
-{path:"signup1",component:Signup1Component},
+
+
 {path:"otp",component:OtpComponent}
 
 ];

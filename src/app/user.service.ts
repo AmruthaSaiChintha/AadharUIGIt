@@ -17,19 +17,25 @@ export class UserService {
 
   constructor(public http:HttpClient, private jwt: JwtHelperService,
     private cookieService:CookieService) { }
-  apiUrl="http://localhost:8033/api/userdata";
 
-  baseUrl="http://localhost:8033/api/UserList/Login"
 
-  private apiUrl1 = 'http://localhost:8033/api';
 
-  userList='http://localhost:8033/api/GoogleDriveProxy'
+    private emailurl = 'http://localhost:90/api/FinalUsers';
+  
 
-  finalUser='http://localhost:8033/api/FinalUsers';
+  apiUrl="http://localhost:90/api/userdata";
+
+  baseUrl="http://localhost:90/api/UserList/Login"
+
+  private apiUrl1 = 'http://localhost:90/api';
+
+  userList='http://localhost:90/api/GoogleDriveProxy'
+
+  finalUser='http://localhost:90/api/FinalUsers';
 
   
 
-  email='http://localhost:8033/api/FinalUsers/SendMail'
+  email='http://localhost:90/api/FinalUsers/SendMail'
 
   verify(userdata:any){
     return this.http.post(this.apiUrl+'/authenticat/',userdata);
@@ -73,6 +79,8 @@ export class UserService {
   update(user:any, id:number){
     return this.http.put(this.apiUrl+'/'+id,user);
   }
+
+  
   updateUser(id:number, user: any):Observable<any> {
     return this.http.put(this.apiUrl+'/'+id, user);
   }
@@ -83,17 +91,19 @@ export class UserService {
   
     return this.http.get(this.apiUrl)
 }
-checkAadharExistence(passportNumber: string): Observable<boolean> {
-  const url = `${this.apiUrl}/check-aadhar/${passportNumber}`;
-  return this.http.get<boolean>(url);
+
+
+checkEmailExists(email: string): Observable<{ exists: boolean, message: string }> {
+  const url = `${this.emailurl}/email-exists/${email}`;
+  return this.http.get<{ exists: boolean, message: string }>(url);
 }
 
 
 
-checkEmailExistence(email: string): Observable<boolean> {
-  const url = `${this.apiUrl}/check-aadhar/${email}`;
-  return this.http.get<boolean>(url);
-}
+
+
+
+
 
 sendEmail(user:any){
   return this.http.post(this.email, user);

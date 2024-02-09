@@ -51,13 +51,14 @@ export class LoginComponent implements OnDestroy, OnInit {
     private cookieService: CookieService
   ) {
     this.loginForm = fb.group({
-      email: fb.control('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/), emailFormatValidator]),
+      email: fb.control('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]),
       password: fb.control('', [
         Validators.required,
         Validators.minLength(8),
         passwordFormatValidator
       ]),
     });
+    
   }
   ngOnInit(): void {
   }

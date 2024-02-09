@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ViewpageidComponent {
   aadharNumber:any;
-  apiUrl='http://localhost:8033/api/GoogleDriveProxy';
+  apiUrl='http://localhost:90/api/GoogleDriveProxy';
   passportImageUrl:string=''
   
     

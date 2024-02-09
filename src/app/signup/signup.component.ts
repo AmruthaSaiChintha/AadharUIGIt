@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
   signupFormModel!: FormGroup;
   isHovered: boolean = false;
 
-  constructor(private router: Router, public people: UserService, private fb: FormBuilder) { }
+  constructor(public router: Router, public people: UserService, private fb: FormBuilder) { }
 
   showpassword: boolean = false;
 
@@ -24,7 +24,9 @@ export class SignupComponent implements OnInit {
           Validators.required,
           Validators.email,
           Validators.maxLength(30),
-          this.comEmailValidator
+          Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+          
+        
         ]
       ],
       username: [
@@ -51,33 +53,51 @@ export class SignupComponent implements OnInit {
 
   comEmailValidator(control: any): { [key: string]: boolean } | null {
     const email = control.value;
-    if (!/.com$/.test(email.toLowerCase())) {
+    if (!/^[^@\s]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return { 'invalidEmail': true };
     }
     return null;
   }
+  
+  
 
   signup() {
     console.log("SignupFormClicked");
     console.log(this.signupFormModel.value);
+    
+    // Mark all fields as touched to trigger validation messages
+    this.signupFormModel.markAllAsTouched();
+  
     if (this.signupFormModel.valid) {
-      this.people.user(this.signupFormModel.value).subscribe(
+      const email = this.signupFormModel.get('email')?.value;
+  
+      // Check if the email already exists
+      this.people.checkEmailExists(email).subscribe(
         (res) => {
-          console.log(res);
-          console.log("Verified!!");
-          this.router.navigate(['login']);
+          if (res.exists) {
+            // Email already exists, display an error message
+            this.signupFormModel.get('email')?.setErrors({ 'emailExists': true });
+          } else {
+            // Email does not exist, proceed with registration
+            this.people.user(this.signupFormModel.value).subscribe(
+              (res) => {
+                console.log(res);
+                console.log("Verified!!");
+                this.router.navigate(['login']);
+              },
+              (err) => {
+                console.log(err);
+              }
+            );
+          }
         },
         (err) => {
           console.log(err);
         }
       );
-    } else {
-      this.signupFormModel.markAllAsTouched();
-      console.log("Form errors:", this.signupFormModel.errors);
     }
   }
-
-  toggleShowPassword() {
+    toggleShowPassword() {
     this.showpassword = !this.showpassword;
   }
 }

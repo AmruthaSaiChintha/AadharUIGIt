@@ -33,5 +33,9 @@
 {
   position:relative;
 }
+.required
+{
+  color: red;
+}
 
 
